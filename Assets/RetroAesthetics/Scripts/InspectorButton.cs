@@ -11,7 +11,7 @@ using System.Reflection;
 /// the target MonoBehaviour.
 /// </summary>
 [System.AttributeUsage(System.AttributeTargets.Field)]
-public class InspectorButtonAttribute : PropertyAttribute
+public class InspectorButton : PropertyAttribute
 {
   public static float kDefaultButtonWidth = 150;
 
@@ -24,21 +24,21 @@ public class InspectorButtonAttribute : PropertyAttribute
     set { _buttonWidth = value; }
   }
 
-  public InspectorButtonAttribute(string MethodName)
+  public InspectorButton(string MethodName)
   {
     this.MethodName = MethodName;
   }
 }
 
 #if UNITY_EDITOR
-[CustomPropertyDrawer(typeof(InspectorButtonAttribute))]
+[CustomPropertyDrawer(typeof(InspectorButton))]
 public class InspectorButtonPropertyDrawer : PropertyDrawer
 {
   private MethodInfo _eventMethodInfo = null;
 
   public override void OnGUI(Rect position, SerializedProperty prop, GUIContent label)
   {
-    InspectorButtonAttribute inspectorButtonAttribute = (InspectorButtonAttribute)attribute;
+    InspectorButton inspectorButtonAttribute = (InspectorButton)attribute;
     Rect buttonRect = new Rect(position.x + (position.width - inspectorButtonAttribute.ButtonWidth) * 0.5f, position.y, 
                                inspectorButtonAttribute.ButtonWidth, position.height);
     if (GUI.Button(buttonRect, label.text))
