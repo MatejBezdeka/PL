@@ -833,32 +833,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e0eef68e9754b2a8a28e5afbe009a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useStaticNoise: 0
-  noiseTexture: {fileID: 0}
-  staticIntensity: 0.164
-  randomGlitches: 2
-  glitchIntensity: 0.049
-  glitchFrequency: 0
+  useStaticNoise: 1
+  noiseTexture: {fileID: 2800000, guid: 0ecedd370a77a4a3dbbb9cc9e09081cd, type: 3}
+  staticIntensity: 1
+  randomGlitches: 0
+  glitchIntensity: 1
+  glitchFrequency: 2
   useDisplacementWaves: 1
-  displacementAmplitude: 0.66
-  displacementFrequency: 15.2
-  displacementSpeed: 0.32
+  displacementAmplitude: 0.8
+  displacementFrequency: 60
+  displacementSpeed: 0.8
   useChromaticAberration: 1
-  chromaticAberration: 7
+  chromaticAberration: 4
   useVignette: 1
-  vignette: 0.1
-  useBottomNoise: 0
-  bottomHeight: 0.112
-  bottomIntensity: 1
+  vignette: 0.116
+  useBottomNoise: 1
+  bottomHeight: 0.04
+  bottomIntensity: 0.47
   useBottomStretch: 1
   useRadialDistortion: 1
-  radialIntensity: 18.7
-  radialCurvature: 4.96
+  radialIntensity: 20
+  radialCurvature: 4
   gammaScale: 1
   useScanlines: 1
-  scanlineSize: 712.77
-  scanlineIntensity: 0.5
-  _material: {fileID: 198884204}
+  scanlineSize: 256
+  scanlineIntensity: 0
+  _material: {fileID: 1609895495}
 --- !u!1 &136028254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,52 +1231,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1774596102}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &198884204
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/RetroCameraEffect
-  m_Shader: {fileID: 4800000, guid: 2cfdcae76c757405786f1219a383da6e, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SecondaryTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ChromaticAberration: 0
-    - _DisplacementAmplitude: 0.00066
-    - _DisplacementFrequency: 15.2
-    - _DisplacementSpeed: 0.32
-    - _NoiseBottomHeight: 0.04
-    - _NoiseBottomIntensity: 1
-    - _OffsetNoiseX: 0
-    - _OffsetNoiseY: 0
-    - _StaticIntensity: 1
-    - _UseChromaticAberration: 1
-    - _UseDisplacement: 1
-    - _UseStaticNoise: 1
-    - _UseVignette: 0
-    - _Vignette: 0
-    m_Colors:
-    - _OffsetPos: {r: 0, g: 0, b: 0, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &236983887
 GameObject:
   m_ObjectHideFlags: 0
@@ -5882,6 +5836,7 @@ GameObject:
   - component: {fileID: 1398132932}
   - component: {fileID: 1398132931}
   - component: {fileID: 1398132930}
+  - component: {fileID: 1398132934}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -5968,6 +5923,20 @@ Transform:
   m_Father: {fileID: 716438643}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1398132934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398132929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63450ef48c7bb44a8bd141ba55219266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: {x: 0, y: 0.27}
+  textureName: _GridTex
 --- !u!4 &1407253992 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7645885141681275367, guid: 9382b769300cfc044af251b5e277edaa,
@@ -6459,6 +6428,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9382b769300cfc044af251b5e277edaa, type: 3}
+--- !u!21 &1609895495
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/RetroCameraEffect
+  m_Shader: {fileID: 4800000, guid: 2cfdcae76c757405786f1219a383da6e, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondaryTex:
+        m_Texture: {fileID: 2800000, guid: 0ecedd370a77a4a3dbbb9cc9e09081cd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ChromaticAberration: 0
+    - _DisplacementAmplitude: 0.00080000004
+    - _DisplacementFrequency: 60
+    - _DisplacementSpeed: 0.8
+    - _NoiseBottomHeight: 0.04
+    - _NoiseBottomIntensity: 1
+    - _OffsetNoiseX: 0
+    - _OffsetNoiseY: 0
+    - _StaticIntensity: 1
+    - _UseChromaticAberration: 1
+    - _UseDisplacement: 1
+    - _UseStaticNoise: 1
+    - _UseVignette: 0
+    - _Vignette: 0
+    m_Colors:
+    - _OffsetPos: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1001 &1616541721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6655,24 +6670,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.969697, g: 0, b: 1, a: 1}
+  m_Material: {fileID: 2100000, guid: 51f1d3441c47b4b4199c09025167c591, type: 2}
+  m_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 38ba7d26af8954490837a2cd49dab0dc, type: 3}
-  m_Type: 3
+  m_Sprite: {fileID: 21300000, guid: e4f1fee3de32377429fd1348fae62b10, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.609
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 5.2
 --- !u!222 &1652968694
 CanvasRenderer:
   m_ObjectHideFlags: 0

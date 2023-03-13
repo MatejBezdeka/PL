@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: "kosti\u010Dkovan\xE1 podlaha 2"
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: ec8ba4708b4b24ea3874139453950356, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -27,6 +27,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _CubemapTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 32, y: 32}
@@ -41,6 +45,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 34, y: 16}
+        m_Offset: {x: 0, y: 0}
+    - _GridTex:
+        m_Texture: {fileID: 2800000, guid: 98d05bc502f7e4a4685067d7a9be4ae5, type: 3}
         m_Scale: {x: 34, y: 16}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -70,27 +78,65 @@ Material:
     m_Ints: []
     m_Floats:
     - PixelSnap: 0
+    - _Alpha: 1
     - _BumpScale: 1
+    - _CellSize: 5
+    - _ColorMask: 15
+    - _CubemapEnabled: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DirectionPitch: 0
+    - _DirectionYaw: 0
     - _DstBlend: 0
+    - _EmissionGain: 1
     - _EnableExternalAlpha: 0
+    - _Exponent: 1
+    - _Gain: 2
     - _GlossMapScale: 1
     - _Glossiness: 0.331
     - _GlossyReflections: 1
+    - _Intensity: 1
+    - _LineWidth: 0.1
     - _Metallic: 1
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Scale: 1
     - _SmoothnessTextureChannel: 0
+    - _Specular: 131
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _StripesDistance: 0.286
+    - _StripesExponent: 0.24
+    - _StripesExponent1: 4
+    - _StripesHeight: 0.45
+    - _StripesWidth: 0.331
+    - _SunEnabled: 1
+    - _SunExponent: 5
+    - _SunPitch: 0
+    - _SunSize: 0.01
+    - _SunYaw: 0
     - _UVSec: 0
+    - _UseUIAlphaClip: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.6509804, g: 0.56151056, b: 0.29803923, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color1: {r: 1, g: 1, b: 0, a: 1}
+    - _Color2: {r: 1, g: 0, b: 1, a: 1}
+    - _ColorSun1: {r: 0.96999997, g: 0.67, b: 0.50999993, a: 0}
+    - _ColorSun2: {r: 0.96999997, g: 0.16999996, b: 0.20999995, a: 0}
+    - _Direction: {r: 0, g: 1, b: 0, a: 0}
+    - _EmissionColor: {r: 0.5660378, g: 0, b: 0.37311438, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _LineColor: {r: 0.09999997, g: 1, b: 0.09999997, a: 1}
+    - _MainColor: {r: 0.09999997, g: 0.09999997, b: 0.09999997, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _SunDirection: {r: 0, g: 1, b: 0, a: 0}
+    - _SunDirectionP: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
