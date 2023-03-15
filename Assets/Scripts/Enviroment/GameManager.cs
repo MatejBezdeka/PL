@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour {
     }
     public void Die(int score) {
         UnlockCursor();
-        DeathManager.manager.GiveScore(score);
+        DeathManager.score = score;
         SceneManager.LoadScene("DeathScene");
     }
 }

@@ -68,12 +68,12 @@ Material:
     - _DirectionPitch: 180
     - _DirectionYaw: 180
     - _DstBlend: 0
-    - _Exponent: 3
-    - _Gain: 0.47
+    - _Exponent: 0.5
+    - _Gain: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Intensity: 1.636
+    - _Intensity: 0.824
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -86,18 +86,18 @@ Material:
     - _StripesHeight: 1
     - _StripesWidth: 0.00517
     - _SunEnabled: 1
-    - _SunExponent: 4.08
+    - _SunExponent: 10
     - _SunPitch: 85
-    - _SunSize: 0.006
+    - _SunSize: 0.01
     - _SunYaw: 180
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0.14382343, g: 0.21669689, b: 0.3018868, a: 1}
-    - _Color2: {r: 1, g: 0, b: 0.3796172, a: 0}
-    - _ColorSun1: {r: 1, g: 0.8465813, b: 0.33490568, a: 0}
-    - _ColorSun2: {r: 0.98039216, g: 0.3098039, b: 0.78997487, a: 0}
+    - _Color1: {r: 0.8226219, g: 0.6933962, b: 1, a: 1}
+    - _Color2: {r: 0.9622642, g: 0, b: 0, a: 1}
+    - _ColorSun1: {r: 0.9605565, g: 1, b: 0, a: 1}
+    - _ColorSun2: {r: 1, g: 0, b: 0.7389393, a: 0}
     - _Direction: {r: 7.642742e-15, g: -1, b: 0.00000008742278, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SunDirection: {r: -0.00000008709011, g: 0.087155804, b: -0.9961947, a: 0}

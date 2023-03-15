@@ -10,11 +10,9 @@ public class DeathManager : MonoBehaviour {
     [SerializeField] TextMeshProUGUI scoreBoard;
     [SerializeField] TMP_InputField nameInput; 
     [SerializeField] TextMeshProUGUI newScore;
-    public static DeathManager manager = new DeathManager();
     Saving memory;
-    int score;
+    public static int score;
     void Start() {
-        manager = GetComponent<DeathManager>();
         memory = gameObject.AddComponent<Saving>();
         memory.Load();
         scoreBoard.text = memory.scoreBoardText();
@@ -27,9 +25,9 @@ public class DeathManager : MonoBehaviour {
             return;
         }
         button.interactable = false;
-        nameInput.text = "Saved";
         nameInput.interactable = false;
         memory.Save(score, nameInput.text);
+        nameInput.text = "Saved";
         scoreBoard.text = memory.scoreBoardText();
     }
     
@@ -38,8 +36,5 @@ public class DeathManager : MonoBehaviour {
     }
     public void MainMenu() {
         SceneManager.LoadScene("MainMenu");
-    }
-    public void GiveScore(int score) {
-        manager.score = score;
     }
 }
