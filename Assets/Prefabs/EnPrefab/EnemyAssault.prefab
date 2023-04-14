@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2647166205915414346
 Transform:
   m_ObjectHideFlags: 0
@@ -153,10 +153,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072ce361c2f66eb40b95a420a9e5f8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arm: {fileID: 0}
-  enemyPrefab: {fileID: 2647166205915414350}
+  value: 0
+  navMeshAgent: {fileID: 0}
+  gunBarrel: {fileID: 0}
   bulletPrefab: {fileID: 4306742943587162167, guid: d610b2b6110b989429c5a25a245a8840,
     type: 3}
+  anim: {fileID: 0}
 --- !u!1 &3257973650770051181
 GameObject:
   m_ObjectHideFlags: 0

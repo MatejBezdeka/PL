@@ -116,7 +116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2647166205915414346
 Transform:
   m_ObjectHideFlags: 0
@@ -169,9 +169,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273558787d07fae42846a69fed0c60ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arm: {fileID: 0}
-  enemyPrefab: {fileID: 2647166205915414350}
+  value: 0
+  gunBarrel: {fileID: 0}
   bulletPrefab: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!136 &821484183694534216
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -462,6 +463,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EliotModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337238262807894789, guid: 72e9a5685182aae41a2b90fe90eeb0f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6337290884248377051, guid: 72e9a5685182aae41a2b90fe90eeb0f5,
         type: 3}

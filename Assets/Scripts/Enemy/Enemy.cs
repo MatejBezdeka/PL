@@ -1,15 +1,10 @@
-using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 public abstract class Enemy : MonoBehaviour {
-    public static List<Enemy> listOfEnemies = new List<Enemy>();
-    /*
-     * vypocitani armoru?
-     */
-    protected int enemyID;
     protected int hp;
-    [SerializeField] public int value { get; protected set; }
+    public int value;
     protected int damage;
     public float speed { get; protected set; }
     protected int armor;
@@ -21,14 +16,11 @@ public abstract class Enemy : MonoBehaviour {
     public float attackRange { get; protected set; }
     protected float bulletSpread;
     public int courage { get; protected set; }
-    NavMeshAgent navMeshAgent;
-    Transform gunBarrel;
-    public Transform arm;
+    public NavMeshAgent navMeshAgent;
+    [SerializeField] Transform gunBarrel;
     StateController state;
-    [SerializeField] 
-    protected GameObject enemyPrefab;
-    [SerializeField] 
-    protected GameObject bulletPrefab;
+    [SerializeField] protected GameObject bulletPrefab;
+    [SerializeField] Animator anim;
     //--------------
     //private Dictionary<int, Tuple<GameObject, GameObject>> a = new Dictionary<int, Tuple<GameObject, GameObject>>();
     //--------------
@@ -46,19 +38,12 @@ public abstract class Enemy : MonoBehaviour {
     protected virtual void Start() {
         bulletSpeed = 3;
         player = GameObject.FindWithTag("Player");
-        arm = gameObject.transform.GetChild(0);
-        try {
-            gunBarrel = arm.GetChild(0).GetChild(2);
-        }
-        catch (Exception e) {
-            // ignored
-        }
         currentCooldown = attackSpeed;
         gameObject.tag = "Enemy";
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponentInParent<NavMeshAgent>();
         navMeshAgent.speed = speed;
         navMeshAgent.stoppingDistance = attackRange + 0.5f;
-        state = new ChaseState(this, navMeshAgent, new Animator(), player.transform);
+        state = new ChaseState(this, navMeshAgent, anim, player.transform);
     }
 
     protected virtual void Update() {
@@ -109,7 +94,7 @@ public abstract class Enemy : MonoBehaviour {
     void Die(PlayerController shotBy) {
         shotBy.ChangeScore(value);
         GameManager.manager.EnemyDied(this);
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     public float DistaceBetweenEnemyAndPlayer() {
@@ -120,6 +105,6 @@ public abstract class Enemy : MonoBehaviour {
         return player.transform.position - transform.position;
     }
     public Vector3 DirectionOfPlayerToEnemy() {
-        return  transform.position - player.transform.position;
+        return transform.position - player.transform.position;
     }
 }

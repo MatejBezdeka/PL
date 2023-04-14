@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour {
             GameObject enemy = typesOfEnemies[rn.Next(0, typesOfEnemies.Count)];
             enemy = Instantiate(enemy, listOfSpawns[rn.Next(0, listOfSpawns.Count)].transform.position,
                 UnityEngine.Quaternion.identity);
-            Enemy comp = enemy.GetComponent<Enemy>();
+            Enemy comp = enemy.GetComponentInChildren<Enemy>();
             enemiesWorthInArena += comp.value;
             //listOfEnemiesInArena.Add(comp);
         }

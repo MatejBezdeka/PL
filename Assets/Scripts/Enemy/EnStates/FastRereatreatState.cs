@@ -3,6 +3,8 @@ using UnityEngine.AI;
 
 public class FastRereatreatState : StateController {
     NavMeshHit hit;
+    static readonly int State = Animator.StringToHash("state");
+
     public FastRereatreatState(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player) : base(enemy, agent, anim,player) {
         name = currentState.fastRetreat;
     }
@@ -10,6 +12,7 @@ public class FastRereatreatState : StateController {
     protected override void enter() {
         //Debug.Log("fast");
         agent.speed = enemy.speed * 1.5f;
+        anim.SetInteger(State, 0);
         base.enter();
     }
 
@@ -30,6 +33,7 @@ public class FastRereatreatState : StateController {
 
     protected override void exit() {
         agent.speed = enemy.speed;
+        anim.SetInteger(State, 999);
         base.exit();
     }
 }

@@ -63,7 +63,7 @@ public class StateController {
         //enemy.arm.transform.rotation = Quaternion.LookRotation(lookDirection);
         direction *= plusMinus;
         direction.y = enemy.transform.position.y;
-        enemy.transform.rotation = Quaternion.LookRotation(direction);
+        enemy.navMeshAgent.transform.rotation = Quaternion.LookRotation(direction);
     }
 
     protected void AtEdge() {

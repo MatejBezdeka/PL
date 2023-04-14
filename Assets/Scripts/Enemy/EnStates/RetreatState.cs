@@ -4,12 +4,15 @@ using UnityEngine.AI;
 public class RetreatState : StateController {
     Transform startTransform;
     NavMeshHit hit;
+    static readonly int State = Animator.StringToHash("state");
+
     public RetreatState(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player) : base(enemy, agent, anim,player) {
         name = currentState.retreat;
     }
 
     protected override void enter() {
         agent.speed = (enemy.speed/4) * 3;
+        anim.SetInteger(State, 0);
         base.enter();
     }
 
@@ -31,6 +34,7 @@ public class RetreatState : StateController {
 
     protected override void exit() {
         agent.speed = enemy.speed;
+        anim.SetInteger(State, 999);
         base.exit();
     }
 }

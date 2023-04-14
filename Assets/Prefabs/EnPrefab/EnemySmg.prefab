@@ -312,7 +312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2647166205915414346
 Transform:
   m_ObjectHideFlags: 0
@@ -448,10 +448,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9489213d7f6f654bbe59e72616a5c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arm: {fileID: 0}
-  enemyPrefab: {fileID: 0}
+  value: 0
+  gunBarrel: {fileID: 0}
   bulletPrefab: {fileID: 4306742943587162167, guid: ed17a1c2c2e04f049b8e573fe25c37ad,
     type: 3}
+  anim: {fileID: 0}
 --- !u!1 &2949002953612122892
 GameObject:
   m_ObjectHideFlags: 0
