@@ -21,7 +21,7 @@ public abstract class Enemy : MonoBehaviour {
     StateController state;
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] Animator anim;
-
+    [SerializeField] protected ParticleSystem blood;
     [SerializeField] protected ParticleSystem muzzleFlash;
     //--------------
     //private Dictionary<int, Tuple<GameObject, GameObject>> a = new Dictionary<int, Tuple<GameObject, GameObject>>();
@@ -86,8 +86,10 @@ public abstract class Enemy : MonoBehaviour {
     }
 
     public void GetHit(int damage, PlayerController shotBy, Vector3 positon) {
-        damage = damage / (1 + (armor / 100));
+        damage /= (1 + (armor / 100));
         hp -= damage;
+        blood.transform.position = positon;
+        blood.Play();
         //Debug.Log("dm " + damage);
         //Debug.Log("jsem zraněn" + hp);
         if (hp <= 0) {
