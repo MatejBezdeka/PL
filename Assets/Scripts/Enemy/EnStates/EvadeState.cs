@@ -2,7 +2,7 @@
 using UnityEngine.AI;
 
 public class EvadeState : StateController {
-    public EvadeState(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player) : base(enemy, agent, anim,player) {
+    public EvadeState(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player, ParticleSystem muzzleFlash) : base(enemy, agent, anim, player, muzzleFlash) {
         name = currentState.evade;
     }
     

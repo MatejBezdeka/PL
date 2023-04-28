@@ -43,8 +43,8 @@ public class UpgradeManager : MonoBehaviour {
     public void LevelUp() {
         for (int i = 0; i < listOfButtons.Count;) {
             int id = rn.Next(0, listOfUpgrades.Count);
-            if (ControllDuplicityOfUpgrade(id)) {
-                Debug.Log("ID: " + id);
+            if (ControlDuplicityOfUpgrade(id)) {
+                //Debug.Log("ID: " + id);
                 upgradeActive.Add(id);
                 listOfUpgrades[id].SetRarity();
                 listOfDescriptions[i].text = "";
@@ -61,7 +61,7 @@ public class UpgradeManager : MonoBehaviour {
         }
     }
 
-    bool ControllDuplicityOfUpgrade(int upgradeId) {
+    bool ControlDuplicityOfUpgrade(int upgradeId) {
         foreach (int id in upgradeActive) {
             if (upgradeId == id) {
                 return false;

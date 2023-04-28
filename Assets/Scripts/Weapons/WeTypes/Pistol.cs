@@ -7,6 +7,7 @@ public class Pistol : Weapon {
         cooldown = 0.3f;
         reloadCooldown = 3.2f;
         weaponSpread = 0;
+        muzzleFlash.transform.position = gunBarrel.position;
         base.Awake();
     }
     protected void Update() {

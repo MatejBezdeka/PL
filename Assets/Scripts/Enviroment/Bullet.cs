@@ -8,7 +8,8 @@ public class Bullet : MonoBehaviour {
     PlayerController shotBy;
 
     public static void MakeBullet(GameObject bulletPrefab,int damage, Transform gunBarrel, Vector3 destination, bool friendly, PlayerController shotBy, float spread, float bulletSpeed, Vector3 directionOfEntity) {
-        GameObject bullet = Instantiate(bulletPrefab,/*předpovídá pozici zbraně ->*/ gunBarrel.position + (directionOfEntity.normalized/10), gunBarrel.rotation);
+        GameObject bullet = Instantiate(bulletPrefab,/*předpovídá pozici zbraně ->*/ gunBarrel.position + (directionOfEntity.normalized/15), gunBarrel.rotation);
+        //GameObject bullet = Instantiate(bulletPrefab,/*předpovídá pozici zbraně ->*/ new Vector3(gunBarrel.position.x +(directionOfEntity.normalized.x/100),gunBarrel.position.y, gunBarrel.position.z + directionOfEntity.z), gunBarrel.rotation);
         //vlastnosti
         Bullet bulletComp =  bullet.AddComponent<Bullet>();
         bulletComp.damage = damage;
@@ -39,7 +40,7 @@ public class Bullet : MonoBehaviour {
                 break;
             case "Enemy":
                 if (friendly)
-                    collisioned.gameObject.GetComponent<Enemy>().GetHit(damage, shotBy);
+                    collisioned.gameObject.GetComponent<Enemy>().GetHit(damage, shotBy, transform.position);
                 break; 
         } 
         Destroy(gameObject);

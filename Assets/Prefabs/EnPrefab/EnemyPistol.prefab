@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
+  navMeshAgent: {fileID: 0}
   gunBarrel: {fileID: 0}
   bulletPrefab: {fileID: 4306742943587162167, guid: ed17a1c2c2e04f049b8e573fe25c37ad,
     type: 3}

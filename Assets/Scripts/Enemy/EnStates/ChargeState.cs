@@ -4,7 +4,7 @@ public class ChargeState : StateController {
     private float cooldown = 0.5f;
     private float currentCooldown;
 
-    public ChargeState(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player) : base(enemy, agent, anim, player) {
+    public ChargeState(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player, ParticleSystem muzzleFlash) : base(enemy, agent, anim, player, muzzleFlash) {
         name = currentState.charge;
     }
 
@@ -21,7 +21,7 @@ public class ChargeState : StateController {
     protected override void update() {
         currentCooldown -= Time.deltaTime;
         if (currentCooldown <= 0) {
-            nextstate = new RetreatState(enemy, agent, anim, player);
+            nextstate = new RetreatState(enemy, agent, anim, player, muzzleFlash);
             stage = stateStage.exit;
         }
     }

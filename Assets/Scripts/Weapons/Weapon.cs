@@ -26,9 +26,10 @@ public class Weapon : MonoBehaviour {
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform gunBarrel;
     [SerializeField] protected PlayerController playerController;
+    [SerializeField] protected ParticleSystem muzzleFlash;
     MeshRenderer meshRenderer;
     protected virtual void Awake() {
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
+        meshRenderer = GetComponent<MeshRenderer>();
         bulletsInMag = magSize;
         bulletSpeed = 15;
         reloading = false;
@@ -40,12 +41,13 @@ public class Weapon : MonoBehaviour {
 
     public virtual void Attack() {
         if (currentCooldown > 0) return;
+        muzzleFlash.Play(true);
         shootBullet();
         bulletsInMag--;
         currentCooldown = cooldown;
     }
     protected void shootBullet() {
-        Bullet.MakeBullet(bulletPrefab, damage, gunBarrel, laserPos2.position, true, playerController, weaponSpread, bulletSpeed, playerController.PlayerVelocity);
+        Bullet.MakeBullet(bulletPrefab, damage, gunBarrel, laserPos2.position, true, playerController, weaponSpread, bulletSpeed, playerController.move);
     }
     public void Reload() {
         bulletsInMag = magSize;
@@ -60,5 +62,7 @@ public class Weapon : MonoBehaviour {
     public void disableAndAbleMesh(Weapon nextWeapon) {
         meshRenderer.enabled = false;
         nextWeapon.meshRenderer.enabled = true;
+        muzzleFlash.transform.position = nextWeapon.gunBarrel.position;
+
     }
 }

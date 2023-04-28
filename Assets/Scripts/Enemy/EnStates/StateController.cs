@@ -15,12 +15,14 @@ public class StateController {
     protected NavMeshAgent agent;
     protected Animator anim;
     protected Transform player;
+    protected ParticleSystem muzzleFlash;
 
-    protected StateController(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player) {
+    protected StateController(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player, ParticleSystem muzzleFlash) {
         this.enemy = enemy;
         this.agent = agent;
         this.anim = anim;
         this.player = player;
+        this.muzzleFlash = muzzleFlash;
         stage = stateStage.enter;
     }
 
@@ -67,7 +69,7 @@ public class StateController {
     }
 
     protected void AtEdge() {
-        nextstate = new ChargeState(enemy, agent, anim, player);
+        nextstate = new ChargeState(enemy, agent, anim, player, muzzleFlash);
         stage = stateStage.exit;
     }
 }

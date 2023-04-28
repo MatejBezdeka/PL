@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour {
     public PlayerUpgrader playerUpgrader;
     Vector3 playerVelocity;
     public Vector3 PlayerVelocity => playerVelocity;
+    public Vector3 move;
     bool groundedPlayer;
     bool jumped;
     bool jumpedTwo;
@@ -13,8 +14,8 @@ public class PlayerController : MonoBehaviour {
     public float xpMultiplayer { get; internal set; } = 1;
     public float scoreMultiplayer { get; internal set; }  = 1;
     protected float playerSpeed = 6.5f;
-    float jumpHeight = 1.5f;
-    float gravity = 20;
+    float jumpHeight = 0.5f;
+    float gravity = 10;
     int armor = 1;
     //float dmgMultiplayer = 1;
     public StatsHandler statsHandler { get; protected set; }
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour {
             jumped = false;
             jumpedTwo = false;
         }
-        Vector3 move = transform.right * (Input.GetAxis("Horizontal")) + transform.forward * (Input.GetAxis("Vertical"));
+        move = transform.right * (Input.GetAxis("Horizontal")) + transform.forward * (Input.GetAxis("Vertical"));
         controller.Move(move * (Time.deltaTime * playerSpeed));
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -78,7 +79,8 @@ public class PlayerController : MonoBehaviour {
         }
         playerVelocity.y -= gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
-    }
+        //controller.Move(new Vector3(move.x * (Time.deltaTime * playerSpeed),playerVelocity.y * Time.deltaTime, move.z * (Time.deltaTime * playerSpeed)));
+     }
 
     public void GetHit(int damage) {
         if (armor > 0) {

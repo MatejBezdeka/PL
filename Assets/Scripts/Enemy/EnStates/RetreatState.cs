@@ -6,7 +6,7 @@ public class RetreatState : StateController {
     NavMeshHit hit;
     static readonly int State = Animator.StringToHash("state");
 
-    public RetreatState(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player) : base(enemy, agent, anim,player) {
+    public RetreatState(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player, ParticleSystem muzzleFlash) : base(enemy, agent, anim, player, muzzleFlash) {
         name = currentState.retreat;
     }
 
@@ -18,7 +18,7 @@ public class RetreatState : StateController {
 
     protected override void update() {
         if (enemy.attackRange < enemy.DistaceBetweenEnemyAndPlayer()) {
-            nextstate = new AttackState(enemy, agent, anim, player);
+            nextstate = new AttackState(enemy, agent, anim, player, muzzleFlash);
             stage = stateStage.exit;
         }
         else {

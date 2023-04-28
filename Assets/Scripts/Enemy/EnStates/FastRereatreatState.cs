@@ -5,7 +5,7 @@ public class FastRereatreatState : StateController {
     NavMeshHit hit;
     static readonly int State = Animator.StringToHash("state");
 
-    public FastRereatreatState(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player) : base(enemy, agent, anim,player) {
+    public FastRereatreatState(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player, ParticleSystem muzzleFlash) : base(enemy, agent, anim, player, muzzleFlash) {
         name = currentState.fastRetreat;
     }
 
@@ -18,7 +18,7 @@ public class FastRereatreatState : StateController {
 
     protected override void update() {
         if (enemy.attackRange < enemy.DistaceBetweenEnemyAndPlayer()) {
-            nextstate = new AttackState(enemy, agent, anim, player);
+            nextstate = new AttackState(enemy, agent, anim, player, muzzleFlash);
             stage = stateStage.exit;
         }
         else {

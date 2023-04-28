@@ -21,6 +21,8 @@ public abstract class Enemy : MonoBehaviour {
     StateController state;
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] Animator anim;
+
+    [SerializeField] protected ParticleSystem muzzleFlash;
     //--------------
     //private Dictionary<int, Tuple<GameObject, GameObject>> a = new Dictionary<int, Tuple<GameObject, GameObject>>();
     //--------------
@@ -43,7 +45,8 @@ public abstract class Enemy : MonoBehaviour {
         navMeshAgent = GetComponentInParent<NavMeshAgent>();
         navMeshAgent.speed = speed;
         navMeshAgent.stoppingDistance = attackRange + 0.5f;
-        state = new ChaseState(this, navMeshAgent, anim, player.transform);
+        muzzleFlash.transform.position = gunBarrel.position;
+        state = new ChaseState(this, navMeshAgent, anim, player.transform, muzzleFlash);
     }
 
     protected virtual void Update() {
@@ -58,6 +61,8 @@ public abstract class Enemy : MonoBehaviour {
             for (int i = 0; i < burstBulletCount; i++) {
                 //prodleva mezi výstřelama
                 if (waitBetweenShots) {
+                    anim.Play("Shoot");
+                    muzzleFlash.Play(true);
                     Invoke(nameof(ShootBullet), 0.1f * i); 
                 }
                 else {
@@ -80,7 +85,7 @@ public abstract class Enemy : MonoBehaviour {
         navMeshAgent.Move(DirectionOfPlayerToEnemy().normalized * (navMeshAgent.speed * Time.deltaTime));
     }
 
-    public void GetHit(int damage, PlayerController shotBy) {
+    public void GetHit(int damage, PlayerController shotBy, Vector3 positon) {
         damage = damage / (1 + (armor / 100));
         hp -= damage;
         //Debug.Log("dm " + damage);

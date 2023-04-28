@@ -5,7 +5,6 @@ public class WeaponController : MonoBehaviour {
     public List<Weapon> listOfWeapons { get; private set; }
     int currentWeaponIndex = 0;
     Weapon currentWeapon;
-    Weapon nextWeapon;
     PlayerController playerController;
     [SerializeField] GameObject inventory;
     //[SerializeField] public GameObject bullet { get; }
@@ -57,9 +56,11 @@ public class WeaponController : MonoBehaviour {
     }
 
     public void GetNewWeapon(Weapon newWeapon) {
+        Debug.Log("new gun " + newWeapon.name);
         foreach (Weapon weapon in listOfWeapons) {
             if (weapon == newWeapon) {
                 newWeapon.available = true;
+                return;
             }
         }
     }

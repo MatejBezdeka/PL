@@ -15,14 +15,6 @@ namespace UpgradeMenu.Upgrade {
         public enum type {
             none ,weaponUp, playerUp, heal, weapon, other
         }
-
-        void Start() {
-            
-            /*if (upgradeType == type.weapon) {
-                color = Color.green;
-            }*/
-            
-        }
         public abstract void UndoRarityValues();
         public abstract string GetDescription();
         public abstract void SetRarity();

@@ -69,7 +69,7 @@ Material:
     - _DirectionYaw: 180
     - _DstBlend: 0
     - _Exponent: 3
-    - _Gain: 5
+    - _Gain: 1.88
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -86,7 +86,7 @@ Material:
     - _StripesHeight: 1
     - _StripesWidth: 0.0042
     - _SunEnabled: 1
-    - _SunExponent: 3.95
+    - _SunExponent: 6.17
     - _SunPitch: 85
     - _SunSize: 0.01
     - _SunYaw: 180
@@ -94,8 +94,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0, g: 0, b: 0, a: 1}
-    - _Color2: {r: 1, g: 0, b: 0.67451, a: 1}
+    - _Color1: {r: 0.8235294, g: 0.69411767, b: 1, a: 1}
+    - _Color2: {r: 0.9607843, g: 0, b: 0, a: 1}
     - _ColorSun1: {r: 1, g: 1, b: 1, a: 1}
     - _ColorSun2: {r: 0, g: 0.5674076, b: 1, a: 1}
     - _Direction: {r: 7.642742e-15, g: -1, b: 0.00000008742278, a: 0}

@@ -25,6 +25,7 @@ public class SubMachinegun : Weapon
             burst = burstCount;
         }
         for (int i = 0; i < burst; i++) {
+            muzzleFlash.Play(true);
             Invoke(nameof(shootBullet), 0.1f * i); 
             bulletsInMag--;    
         }

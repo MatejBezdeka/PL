@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class IdleState : StateController {
-    public IdleState(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player) : base(enemy, agent, anim,player) {
+    public IdleState(Enemy enemy, NavMeshAgent agent, Animator anim, Transform player, ParticleSystem muzzleFlash) : base(enemy, agent, anim,player, muzzleFlash) {
         name = currentState.idle;
     }
 

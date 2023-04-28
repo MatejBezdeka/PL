@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
+  navMeshAgent: {fileID: 0}
   gunBarrel: {fileID: 0}
   bulletPrefab: {fileID: 0}
   anim: {fileID: 0}
