@@ -14,7 +14,7 @@ public class ShotgunEnemy : Enemy
         armor = 100;
         burstBulletCount = 7;
         waitBetweenShots = false;
-        bulletSpread = 0.5f;
+        bulletSpread = 0.2f;
         attackRange = Random.Range(6, 8.5f);
         courage = Random.Range(40, 70);
         base.Start();

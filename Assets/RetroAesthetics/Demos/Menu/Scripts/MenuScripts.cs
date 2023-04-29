@@ -25,16 +25,13 @@ namespace RetroAesthetics.Demos {
 		virtual public void StartLevel() {
 			if (levelScene != null) {
 				if (_cameraEffect != null) {
-					if (loadingScene != null) {
+					
 						_loadingSceneAsync = SceneManager.LoadSceneAsync(loadingScene);
 						if (_loadingSceneAsync == null) {
-							Debug.LogWarning(string.Format(
-								"Please add scene `{0}` to the built scenes in the Build Settings.",
-								loadingScene.SceneName));
 							return;
 						}
 						_loadingSceneAsync.allowSceneActivation = false; 
-					}
+					
 				
 					_cameraEffect.FadeOut(0.5f, LoadNextScene);
 				} else {

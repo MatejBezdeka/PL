@@ -2,9 +2,10 @@ using System.Collections;
 using UnityEngine;
 public class PlayerController : MonoBehaviour {
     CharacterController controller;
+    [HideInInspector]
     public PlayerUpgrader playerUpgrader;
     Vector3 playerVelocity;
-    public Vector3 PlayerVelocity => playerVelocity;
+    [HideInInspector]
     public Vector3 move;
     bool groundedPlayer;
     bool jumped;

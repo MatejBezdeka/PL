@@ -3,7 +3,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour {
     /*
     * todo:
-    * zaměřování
+    * zaměřování:pls
      */
     public string name { get; protected set; }
     public WeaponUpgrader weaponUpgrader;
@@ -27,6 +27,7 @@ public class Weapon : MonoBehaviour {
     [SerializeField] protected Transform gunBarrel;
     [SerializeField] protected PlayerController playerController;
     [SerializeField] protected ParticleSystem muzzleFlash;
+    [SerializeField] protected AudioClip shootSound;
     MeshRenderer meshRenderer;
     protected virtual void Awake() {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -41,12 +42,13 @@ public class Weapon : MonoBehaviour {
 
     public virtual void Attack() {
         if (currentCooldown > 0) return;
-        muzzleFlash.Play(true);
         shootBullet();
         bulletsInMag--;
         currentCooldown = cooldown;
     }
     protected void shootBullet() {
+        GameManager.manager.PlayAudioCLip(shootSound);
+        muzzleFlash.Play(true);
         Bullet.MakeBullet(bulletPrefab, damage, gunBarrel, laserPos2.position, true, playerController, weaponSpread, bulletSpeed, playerController.move);
     }
     public void Reload() {

@@ -5,6 +5,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 using Quaternion = System.Numerics.Quaternion;
 using Random = System.Random;
 
@@ -17,6 +19,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField] Canvas mainCanvas;
     [SerializeField] Canvas pauseCanvas;
     [SerializeField] Canvas upgradeCanvas;
+   // [SerializeField] Slider volume;
+    AudioSource audioSource;
     UpgradeManager upgradeManager;
     public int difficulty { get; private set; }
     int minutes = 0;
@@ -41,7 +45,6 @@ public class GameManager : MonoBehaviour {
     int rampUpMultiplayer = 1;
     
     void Start() {
-        
         currentGameState = gameState.go;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
@@ -51,6 +54,8 @@ public class GameManager : MonoBehaviour {
         upgradeManager = upgradeCanvas.GetComponent<UpgradeManager>();
         manager = GetComponent<GameManager>();
         manager.SetDifficulty(difficulty);
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.volume = 0.5f;
     }
 
     /*void FixedUpdate() {
@@ -197,7 +202,13 @@ public class GameManager : MonoBehaviour {
     }
     public void Die(int score) {
         UnlockCursor();
+        Destroy(audioSource);
+        //remove audio
         DeathManager.score = score;
         SceneManager.LoadScene("DeathScene");
+    }
+
+    public void PlayAudioCLip(AudioClip clip) {
+        audioSource.PlayOneShot(clip);
     }
 }

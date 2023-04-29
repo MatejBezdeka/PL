@@ -1,3 +1,4 @@
+using RetroAesthetics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,29 +10,41 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] GameObject Settings;
     [SerializeField] GameObject ScoreBoard;
     [SerializeField] TextMeshProUGUI ScoreBoardText;
+    [SerializeField] AudioClip buttonSound;
+
+    [SerializeField] AudioClip startSound;
+    RetroCameraEffect cameraEffect;
+    AudioSource audio;
     Saving memory;
     void Start() {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         memory = gameObject.AddComponent<Saving>();
+        audio = gameObject.AddComponent<AudioSource>();
+        cameraEffect = FindObjectOfType<RetroCameraEffect>();
+        cameraEffect.FadeIn();
         memory.Load();
         ScoreBoardText.text = memory.scoreBoardText();
     }
 
     public void PressDifficultyButton(int difficulty) {
         Debug.Log(difficulty);
+        PlayAudio(buttonSound);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         GameManager.manager.SetDifficulty(difficulty);
         SceneManager.LoadScene("MainScene");
-    }
+        cameraEffect.FadeOut(0.5f);
+        SceneManager.LoadSceneAsync("Loading");
+        }
     
     public void PressStartButton() {
-        Debug.Log("yyyy");
+        PlayAudio(buttonSound);
         ChangeVisibility(StartButtons, DifficultyButtons);
     }
     
     public void PressSettingsButton() {
+        PlayAudio(buttonSound);
         //ChangeVisibility(StartButtons, Settings);
     }
 
@@ -40,14 +53,21 @@ public class MainMenu : MonoBehaviour {
         Debug.Log("you quit");
     }
     public void PressDifficultyBackButton() {
+        PlayAudio(buttonSound);
         ChangeVisibility(StartButtons, DifficultyButtons);
     }
     public void PressSettingsBackButton() {
+        PlayAudio(buttonSound);
         ChangeVisibility(StartButtons, Settings);
     }
 
     void ChangeVisibility(GameObject obj1, GameObject obj2) {
         obj1.SetActive(!obj1.activeSelf);
         obj2.SetActive(!obj2.activeSelf);
+    }
+
+    void PlayAudio(AudioClip clip) {
+        audio.clip = clip;
+        audio.Play();
     }
 }

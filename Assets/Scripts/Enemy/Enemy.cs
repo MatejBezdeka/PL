@@ -23,6 +23,8 @@ public abstract class Enemy : MonoBehaviour {
     [SerializeField] Animator anim;
     [SerializeField] protected ParticleSystem blood;
     [SerializeField] protected ParticleSystem muzzleFlash;
+    [SerializeField] protected AudioClip shootingSound;
+    AudioSource audioSource;
     //--------------
     //private Dictionary<int, Tuple<GameObject, GameObject>> a = new Dictionary<int, Tuple<GameObject, GameObject>>();
     //--------------
@@ -42,6 +44,8 @@ public abstract class Enemy : MonoBehaviour {
         player = GameObject.FindWithTag("Player");
         currentCooldown = attackSpeed;
         gameObject.tag = "Enemy";
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = shootingSound;
         navMeshAgent = GetComponentInParent<NavMeshAgent>();
         navMeshAgent.speed = speed;
         navMeshAgent.stoppingDistance = attackRange + 0.5f;
@@ -59,10 +63,9 @@ public abstract class Enemy : MonoBehaviour {
     public virtual void Attack() {
         if (currentCooldown <= 0) {
             for (int i = 0; i < burstBulletCount; i++) {
+                anim.Play("Shoot");
                 //prodleva mezi výstřelama
                 if (waitBetweenShots) {
-                    anim.Play("Shoot");
-                    muzzleFlash.Play(true);
                     Invoke(nameof(ShootBullet), 0.1f * i); 
                 }
                 else {
@@ -74,6 +77,8 @@ public abstract class Enemy : MonoBehaviour {
     }
 
     void ShootBullet() {
+        audioSource.Play();
+        muzzleFlash.Play(true);
         Bullet.MakeBullet(bulletPrefab,damage/burstBulletCount, gunBarrel.transform, player.transform.position, false, null, bulletSpread, bulletSpeed, navMeshAgent.velocity);
     }
     public void Move() {

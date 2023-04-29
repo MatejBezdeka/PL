@@ -2,7 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UpgradeMenu.Upgrade;
 using UpgradeMenu.Upgrade.Upgrades;
@@ -30,6 +33,9 @@ public class UpgradeManager : MonoBehaviour {
     [SerializeField] List<Upgrade> listOfUpgrades = new List<Upgrade>();
     [SerializeField] List<Image> listOfPanels = new List<Image>();
     [SerializeField] GameObject upgrades;
+    [SerializeField] AudioClip levelUpSound;
+    [SerializeField] AudioClip buttonHighlight;
+    [SerializeField] AudioClip buttonClick;
     List<int> upgradeActive = new List<int>();
     WeaponUpgrade wea;
     void Start() {
@@ -41,6 +47,9 @@ public class UpgradeManager : MonoBehaviour {
         }
     }
     public void LevelUp() {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GameManager.manager.PlayAudioCLip(levelUpSound);
         for (int i = 0; i < listOfButtons.Count;) {
             int id = rn.Next(0, listOfUpgrades.Count);
             if (ControlDuplicityOfUpgrade(id)) {
@@ -60,7 +69,6 @@ public class UpgradeManager : MonoBehaviour {
             }
         }
     }
-
     bool ControlDuplicityOfUpgrade(int upgradeId) {
         foreach (int id in upgradeActive) {
             if (upgradeId == id) {
@@ -70,6 +78,7 @@ public class UpgradeManager : MonoBehaviour {
         return true;
     }
     void Click(int button) {
+        GameManager.manager.PlayAudioCLip(buttonClick);
         Upgrade upgrade = listOfUpgrades[upgradeActive[button]];
         upgrade.Use(playerController, weaponController);
         foreach (int id in upgradeActive) {
