@@ -12,7 +12,7 @@ public class Shotgun : Weapon {
     public override void Attack() {
         if (currentCooldown > 0) return;
         for (int i = 0; i < 8; i++) {
-            shootBullet();
+            ShootBullet();
         }
         bulletsInMag--;
         currentCooldown = cooldown;

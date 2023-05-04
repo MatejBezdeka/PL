@@ -21,7 +21,6 @@ public class MusicManager : MonoBehaviour {
         audioSource.clip = playList[songID];
         audioSource.PlayScheduled(delay);
         delay = playList[songID].length;
-        Debug.Log(songID + " song");
         playedSongs.Add(playList[songID]);
         playList.RemoveAt(songID);
         if (playList.Count == 0) {

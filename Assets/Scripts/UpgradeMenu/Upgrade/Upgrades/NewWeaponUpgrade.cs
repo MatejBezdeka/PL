@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,11 @@ using UpgradeMenu.Upgrade;
 
 public class NewWeaponUpgrade : Upgrade {
     [SerializeField] Weapon weapon;
+
+    void Start() {
+        picture = weapon.iconOfTheWeapon;
+    }
+
     public override void UndoRarityValues() { }
     public override string GetDescription() { return description; }
     public override void SetRarity() { }

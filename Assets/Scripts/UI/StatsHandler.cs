@@ -6,23 +6,28 @@ public class StatsHandler : MonoBehaviour {
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] Slider xpSlider;
-    public void ammoChangeAmmoInMag(int ammo, int maxAmmo) { 
-        ammoText.text = ammo + "/" + maxAmmo;
-    }
-    
-    public void ammoChangeReaload() {
-        ammoText.text = "Reloading";
-    }
-    public void ammoChangeSwitch() {
-        ammoText.text = "Switching";
+    [SerializeField] Image gunIcon;
+    [SerializeField] Image bloodOnScreen;
+   
+    public void ammoChangText(string massage) {
+        ammoText.text = massage;
     }
     public void hpChange(int hp, int maxHp) {
         hpText.text = "Hp:" + hp + "/" + maxHp;
+        if (maxHp/4 > hp) {
+            bloodOnScreen.color = Color.white;
+        }
+        else {
+            bloodOnScreen.color = Color.clear;
+        }
     }
     public void scoreChange(int score) {
         scoreText.text = "Score:" + score;
     }
 
+    public void ChangeGunIcon(Sprite gunSprite) {
+        gunIcon.sprite = gunSprite;
+    }
     public bool xpChange(int xp) {
         int sum = (int)(xpSlider.value += xp);
         if (sum < xpSlider.maxValue) {

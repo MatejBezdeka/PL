@@ -12,6 +12,7 @@ public class WeaponUpgrade : StatsUpgrade {
     }
 
     void Start() {
+        
         switch (upgrade) {
             case weaponUpgrade.bulletSpeed:
             case weaponUpgrade.reloadSpeed: 
@@ -27,6 +28,7 @@ public class WeaponUpgrade : StatsUpgrade {
             //Debug.Log(weapon.name + " try");
             if (weapon.available) {
                 //Debug.Log(weapon.name);
+                picture = weapon.iconOfTheWeapon;
                 return weapon.name;
             }
         }

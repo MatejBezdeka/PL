@@ -7,12 +7,12 @@ public class ShootState : WeaponState {
         nextState = new NormalState(weapon, player);
         //Debug.Log("Attack Enter");
         weapon.Attack();
-        player.statsHandler.ammoChangeAmmoInMag(weapon.magSize, weapon.magSize);
+        player.statsHandler.ammoChangText(weapon.magSize + " / " + weapon.magSize);
         if (weapon.bulletsInMag == 0) {
             nextState = new ReloadingState(weapon, player);
             stage = stateStage.exit;
         }
-        player.statsHandler.ammoChangeAmmoInMag(weapon.bulletsInMag, weapon.magSize);
+        player.statsHandler.ammoChangText(weapon.bulletsInMag + " / " +  weapon.magSize);
         if (Input.GetMouseButtonUp(0)) {
             stage = stateStage.exit;   
         }

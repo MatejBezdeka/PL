@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 namespace UpgradeMenu.Upgrade {
     public abstract class Upgrade : MonoBehaviour {
-        [SerializeField] Sprite picture;
+        [SerializeField] protected Sprite picture;
         public Sprite Picture => picture;
         [SerializeField] protected string text;
         [SerializeField] protected string description;

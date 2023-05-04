@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
+
 public class Weapon : MonoBehaviour {
     /*
     * todo:
@@ -28,6 +30,11 @@ public class Weapon : MonoBehaviour {
     [SerializeField] protected PlayerController playerController;
     [SerializeField] protected ParticleSystem muzzleFlash;
     [SerializeField] protected AudioClip shootSound;
+    [SerializeField] public AudioClip reloadSoundStart;
+    [SerializeField] public AudioClip reloadSoundEnd;
+    [SerializeField] public AudioClip switchSoundStart;
+    [SerializeField] public AudioClip switchSoundEnd;
+    [SerializeField] public Sprite iconOfTheWeapon;
     MeshRenderer meshRenderer;
     protected virtual void Awake() {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -42,11 +49,11 @@ public class Weapon : MonoBehaviour {
 
     public virtual void Attack() {
         if (currentCooldown > 0) return;
-        shootBullet();
+        ShootBullet();
         bulletsInMag--;
         currentCooldown = cooldown;
     }
-    protected void shootBullet() {
+    protected void ShootBullet() {
         GameManager.manager.PlayAudioCLip(shootSound);
         muzzleFlash.Play(true);
         Bullet.MakeBullet(bulletPrefab, damage, gunBarrel, laserPos2.position, true, playerController, weaponSpread, bulletSpeed, playerController.move);
@@ -61,10 +68,10 @@ public class Weapon : MonoBehaviour {
         }
     }
 
-    public void disableAndAbleMesh(Weapon nextWeapon) {
+    public void DisableAndAbleMesh(Weapon nextWeapon) {
         meshRenderer.enabled = false;
         nextWeapon.meshRenderer.enabled = true;
-        muzzleFlash.transform.position = nextWeapon.gunBarrel.position;
+        nextWeapon.muzzleFlash.transform.position = nextWeapon.gunBarrel.position;
 
     }
 }

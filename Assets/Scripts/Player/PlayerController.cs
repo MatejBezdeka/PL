@@ -2,11 +2,9 @@ using System.Collections;
 using UnityEngine;
 public class PlayerController : MonoBehaviour {
     CharacterController controller;
-    [HideInInspector]
-    public PlayerUpgrader playerUpgrader;
+    public PlayerUpgrader playerUpgrader { get; private set; }
     Vector3 playerVelocity;
-    [HideInInspector]
-    public Vector3 move;
+    public Vector3 move { get; private set; }
     bool groundedPlayer;
     bool jumped;
     bool jumpedTwo;

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Pistol : Weapon {
     void Awake() {
         name = "Pistol";

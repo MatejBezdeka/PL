@@ -6446,7 +6446,7 @@ MonoBehaviour:
   anim: {fileID: 625800313119605031}
   blood: {fileID: 403207037776431182}
   muzzleFlash: {fileID: 9108312592459432374}
-  shootingSound: {fileID: 8300000, guid: 5b53fa4e9c0aa47c4a3b1eea9121502d, type: 3}
+  shootingSound: {fileID: 8300000, guid: 5b21b1ed1470545f8be004897902f9d2, type: 3}
 --- !u!82 &1509496907256787960
 AudioSource:
   m_ObjectHideFlags: 0

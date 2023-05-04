@@ -6,10 +6,10 @@ public class ReloadingState : WeaponState {
     }
 
     protected override void enter() {
-        Debug.Log("Reload Enter");
         reloadProgress = 0;
-        player.statsHandler.ammoChangeReaload();
+        player.statsHandler.ammoChangText("Reloading");
         base.enter();
+        GameManager.manager.PlayAudioCLip(weapon.reloadSoundStart);
     }
 
     protected override void update() {
@@ -21,9 +21,9 @@ public class ReloadingState : WeaponState {
     }
 
     protected override void exit() {
-        Debug.Log("Reload Exit");
+        GameManager.manager.PlayAudioCLip(weapon.reloadSoundEnd);
         weapon.Reload();
-        player.statsHandler.ammoChangeAmmoInMag(weapon.bulletsInMag, weapon.magSize);
+        player.statsHandler.ammoChangText(weapon.bulletsInMag + " / " + weapon.magSize);
         base.exit();
     }
 }
