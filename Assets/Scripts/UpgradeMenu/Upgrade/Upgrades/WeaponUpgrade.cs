@@ -28,7 +28,7 @@ public class WeaponUpgrade : StatsUpgrade {
             //Debug.Log(weapon.name + " try");
             if (weapon.available) {
                 //Debug.Log(weapon.name);
-                picture = weapon.iconOfTheWeapon;
+                //picture = weapon.iconOfTheWeapon;
                 return weapon.name;
             }
         }

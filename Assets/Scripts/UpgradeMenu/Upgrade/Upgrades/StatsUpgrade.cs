@@ -68,15 +68,15 @@ namespace UpgradeMenu.Upgrade.Upgrades {
         public override Color GetColor() {
             switch (upgradeRarity) {
                 case rarity.common:
-                    return Color.gray;
+                    return new Color32(84,13,110, 255);
                 case rarity.rare:
-                    return Color.red;
+                    return new Color32(146, 0, 117, 255);
                 case rarity.epic:
-                    return Color.magenta;
+                    return new Color32(255, 56, 100, 255);
                 case rarity.legendary:
-                    return Color.yellow;
-                case rarity.special:
-                    return Color.cyan;
+                    return new Color32(255,145,30, 255);
+                //case rarity.special:
+                  //  return Color.cyan;
             }
             return Color.black;
         }

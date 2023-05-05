@@ -16,7 +16,7 @@ public class NewWeaponUpgrade : Upgrade {
     public override string GetDescription() { return description; }
     public override void SetRarity() { }
     public override type GetType() { return type.weapon; }
-    public override Color GetColor() { return Color.green; }
+    public override Color GetColor() { return new Color32(44, 226, 231, 255); }
 
     public override void Use(PlayerController playerController, WeaponController weaponController) {
         weaponController.GetNewWeapon(weapon);
