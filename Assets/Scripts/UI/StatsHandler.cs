@@ -14,8 +14,13 @@ public class StatsHandler : MonoBehaviour {
     }
     public void hpChange(int hp, int maxHp) {
         hpText.text = "Hp:" + hp + "/" + maxHp;
-        if (maxHp/4 > hp) {
-            bloodOnScreen.color = Color.white;
+        if (maxHp > hp) {
+            if (hp == 0) {
+                bloodOnScreen.color = new Color(255, 255, 255, 255);
+            }
+            else {
+                bloodOnScreen.color = new Color(1, 1, 1, hp/maxHp + 0.01f);
+            }
         }
         else {
             bloodOnScreen.color = Color.clear;

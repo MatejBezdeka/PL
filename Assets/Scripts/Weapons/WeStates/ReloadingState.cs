@@ -23,7 +23,7 @@ public class ReloadingState : WeaponState {
     protected override void exit() {
         GameManager.manager.PlayAudioCLip(weapon.reloadSoundEnd);
         weapon.Reload();
-        player.statsHandler.ammoChangText(weapon.bulletsInMag + " / " + weapon.magSize);
+        player.statsHandler.ammoChangText(weapon.bulletsInMag + "/" + weapon.magSize);
         base.exit();
     }
 }

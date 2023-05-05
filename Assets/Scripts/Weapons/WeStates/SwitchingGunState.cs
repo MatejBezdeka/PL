@@ -29,7 +29,7 @@ public class SwitchingGunState : WeaponState {
     protected override void exit() {
         //Debug.Log("switch Over");
         GameManager.manager.PlayAudioCLip(weapon.switchSoundEnd);
-        player.statsHandler.ammoChangText(weapon.bulletsInMag + " / " + weapon.magSize);
+        player.statsHandler.ammoChangText(weapon.bulletsInMag + "/" + weapon.magSize);
         player.statsHandler.ChangeGunIcon(nextWeapon.iconOfTheWeapon);
         lastWeapon.DisableAndAbleMesh(nextWeapon);
         base.exit();
