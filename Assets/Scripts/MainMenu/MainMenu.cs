@@ -45,7 +45,7 @@ public class MainMenu : MonoBehaviour {
     
     public void PressSettingsButton() {
         PlayAudio(buttonSound);
-        //ChangeVisibility(StartButtons, Settings);
+        ChangeVisibility(StartButtons, Settings);
     }
 
     public void PressExitButton() {
