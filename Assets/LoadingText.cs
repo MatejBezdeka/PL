@@ -13,15 +13,11 @@ public class LoadingText : MonoBehaviour
     int length;
     float cooldown = 0.75f;
     float currentCooldown = 0;
-    // Start is called before the first frame update
     void Start() {
         loadingText = gameObject.GetComponent<Text>();
         length = loadingText.text.Length;
-        Debug.Log(length);
-        SceneManager.LoadSceneAsync("MainScene");
     }
 
-    // Update is called once per frame
     void Update() {
         currentCooldown += Time.deltaTime;
         if (currentCooldown >= cooldown) {

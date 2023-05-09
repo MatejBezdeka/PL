@@ -25,9 +25,6 @@ public abstract class Enemy : MonoBehaviour {
     [SerializeField] protected ParticleSystem muzzleFlash;
     [SerializeField] protected AudioClip shootingSound;
     AudioSource audioSource;
-    //--------------
-    //private Dictionary<int, Tuple<GameObject, GameObject>> a = new Dictionary<int, Tuple<GameObject, GameObject>>();
-    //--------------
     protected GameObject player;
     // private List<Transform> spawnPoints = new List<Transform>();
     /*
@@ -77,8 +74,10 @@ public abstract class Enemy : MonoBehaviour {
     }
 
     void ShootBullet() {
+        //efekty
         audioSource.Play();
         muzzleFlash.Play(true);
+        
         Bullet.MakeBullet(bulletPrefab,damage/burstBulletCount, gunBarrel.transform, player.transform.position, false, null, bulletSpread, bulletSpeed, navMeshAgent.velocity);
     }
     public void Move() {
@@ -116,7 +115,7 @@ public abstract class Enemy : MonoBehaviour {
     public Vector3 DirectionOfEnemyToPlayer() {
         return player.transform.position - transform.position;
     }
-    public Vector3 DirectionOfPlayerToEnemy() {
+    Vector3 DirectionOfPlayerToEnemy() {
         return transform.position - player.transform.position;
     }
 }

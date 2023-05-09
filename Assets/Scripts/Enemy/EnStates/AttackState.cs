@@ -27,7 +27,6 @@ public class AttackState : StateController {
                 nextstate = new RetreatState(enemy, agent, anim, player, muzzleFlash);
             stage = stateStage.exit;
         }else {
-            
             enemy.Attack();
         }
     }

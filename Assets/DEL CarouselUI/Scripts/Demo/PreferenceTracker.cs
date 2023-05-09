@@ -33,34 +33,6 @@ namespace CarouselUI.Demo
         }
 
         /// <summary>
-        /// Prints saved preferences to display changes.
-        /// </summary>
-        [ContextMenu("Print All Preferences")]
-        public void PrintAllPreferences()
-        {
-            print($"{PreferenceEnum.AO.ToString()} is {GetValues(PreferenceEnum.AO)}");
-            print($"{PreferenceEnum.AntiAlias.ToString()} is {GetValues(PreferenceEnum.AntiAlias)}");
-            print($"{PreferenceEnum.DeveloperComm.ToString()} is {GetValues(PreferenceEnum.DeveloperComm)}");
-            print($"{PreferenceEnum.DifficultyMode.ToString()} is {GetValues(PreferenceEnum.DifficultyMode)}");
-            print($"{PreferenceEnum.LanguageSub.ToString()} is {GetValues(PreferenceEnum.LanguageSub)}");
-            print($"{PreferenceEnum.LanguageVO.ToString()} is {GetValues(PreferenceEnum.LanguageVO)}");
-        }
-
-        /// <summary>
-        /// Deletes all preferences saved.
-        /// </summary>
-        [ContextMenu("Remove All Preferences")]
-        public void RemoveAllPreferences()
-        {
-            PlayerPrefs.DeleteKey(PreferenceEnum.AntiAlias.ToString());
-            PlayerPrefs.DeleteKey(PreferenceEnum.AO.ToString());
-            PlayerPrefs.DeleteKey(PreferenceEnum.DeveloperComm.ToString());
-            PlayerPrefs.DeleteKey(PreferenceEnum.DifficultyMode.ToString());
-            PlayerPrefs.DeleteKey(PreferenceEnum.LanguageSub.ToString());
-            PlayerPrefs.DeleteKey(PreferenceEnum.LanguageVO.ToString());
-        }
-
-        /// <summary>
         /// Resets all preference values back to 0
         /// </summary>
         public void ResetAllPeferenceToZero()

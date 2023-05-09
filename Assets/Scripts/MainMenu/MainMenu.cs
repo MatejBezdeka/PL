@@ -33,9 +33,10 @@ public class MainMenu : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         GameManager.manager.SetDifficulty(difficulty);
-        SceneManager.LoadScene("MainScene");
         cameraEffect.FadeOut(0.5f);
         SceneManager.LoadSceneAsync("Loading");
+        
+        SceneManager.LoadSceneAsync("MainScene");
         }
     
     public void PressStartButton() {
