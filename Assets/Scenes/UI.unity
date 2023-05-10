@@ -864,7 +864,7 @@ MonoBehaviour:
   useScanlines: 1
   scanlineSize: 256
   scanlineIntensity: 0
-  _material: {fileID: 1619850515}
+  _material: {fileID: 1088937111}
 --- !u!114 &100171427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1195,8 +1195,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 184.63, y: -50}
-  m_SizeDelta: {x: 369.261, y: 100}
+  m_AnchoredPosition: {x: 301.82, y: -50}
+  m_SizeDelta: {x: 603.64, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &136825605
 MonoBehaviour:
@@ -1218,7 +1218,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Resolution
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3c21a4d132bb13b499909ad4ecf9dccc, type: 2}
   m_sharedMaterial: {fileID: 3708607608780591127, guid: 3c21a4d132bb13b499909ad4ecf9dccc,
@@ -6915,6 +6915,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069205014}
   m_CullTransparentMesh: 1
+--- !u!21 &1088937111
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/RetroCameraEffect
+  m_Shader: {fileID: 4800000, guid: 2cfdcae76c757405786f1219a383da6e, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondaryTex:
+        m_Texture: {fileID: 2800000, guid: 05221239b2dfa844ab20f4e51f387fb1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ChromaticAberration: 0
+    - _DisplacementAmplitude: 0.0046300003
+    - _DisplacementFrequency: 150
+    - _DisplacementSpeed: 5
+    - _NoiseBottomHeight: 0.04
+    - _NoiseBottomIntensity: 1
+    - _OffsetNoiseX: 0
+    - _OffsetNoiseY: 0
+    - _StaticIntensity: 1
+    - _UseChromaticAberration: 1
+    - _UseDisplacement: 1
+    - _UseStaticNoise: 1
+    - _UseVignette: 0
+    - _Vignette: 0
+    m_Colors:
+    - _OffsetPos: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1001 &1098146148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9453,52 +9499,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9382b769300cfc044af251b5e277edaa, type: 3}
---- !u!21 &1619850515
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/RetroCameraEffect
-  m_Shader: {fileID: 4800000, guid: 2cfdcae76c757405786f1219a383da6e, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SecondaryTex:
-        m_Texture: {fileID: 2800000, guid: 05221239b2dfa844ab20f4e51f387fb1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ChromaticAberration: 0
-    - _DisplacementAmplitude: 0.0046300003
-    - _DisplacementFrequency: 150
-    - _DisplacementSpeed: 5
-    - _NoiseBottomHeight: 0.04
-    - _NoiseBottomIntensity: 1
-    - _OffsetNoiseX: 0
-    - _OffsetNoiseY: 0
-    - _StaticIntensity: 1
-    - _UseChromaticAberration: 1
-    - _UseDisplacement: 1
-    - _UseStaticNoise: 1
-    - _UseVignette: 0
-    - _Vignette: 0
-    m_Colors:
-    - _OffsetPos: {r: 0, g: 0, b: 0, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1001 &1635572701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10462,7 +10462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPSslider: {fileID: 336289908}
-  FPSinputField: {fileID: 0}
+  FPSinputField: {fileID: 246199537}
 --- !u!1 &1811717300
 GameObject:
   m_ObjectHideFlags: 0
@@ -13057,7 +13057,7 @@ PrefabInstance:
     - target: {fileID: 5400329363646476433, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 150
+      value: 213.18
       objectReference: {fileID: 0}
     - target: {fileID: 5400329363646476433, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
@@ -13075,6 +13075,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: dd5ab83baa480ea44b966d7ca90d09bc,
         type: 3}
+    - target: {fileID: 5400329363646476435, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.8392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400329363646476435, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.3294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400329363646476435, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.82676905
+      objectReference: {fileID: 0}
     - target: {fileID: 5400329363646476435, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
       propertyPath: m_PreserveAspect
@@ -13123,7 +13138,7 @@ PrefabInstance:
     - target: {fileID: 5400329364041825135, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 360.725
+      value: 500.7664
       objectReference: {fileID: 0}
     - target: {fileID: 5400329364041825135, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
@@ -13168,7 +13183,7 @@ PrefabInstance:
     - target: {fileID: 5400329364041825135, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 549.62
+      value: 854.0207
       objectReference: {fileID: 0}
     - target: {fileID: 5400329364041825135, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
@@ -13203,7 +13218,7 @@ PrefabInstance:
     - target: {fileID: 5400329364881353096, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -150
+      value: -213.18
       objectReference: {fileID: 0}
     - target: {fileID: 5400329364881353096, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
@@ -13218,18 +13233,93 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 5400329364881353102, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
+      propertyPath: m_Color.b
+      value: 0.83921576
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400329364881353102, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400329364881353102, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.82745105
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400329364881353102, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
       propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8016331657103306309, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016331657103306309, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016331657103306309, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.00056458
       objectReference: {fileID: 0}
     - target: {fileID: 8016331657103306309, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092245624091591422, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_text
+      value: 1920x1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092245624091591422, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092245624091591422, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092245624091591422, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.8916161
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092245624091591422, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092245624091591422, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092245624091591422, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092245624091591422, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_characterSpacing
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092245624091591422, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092245624091591422, guid: 9cf39e8a7e260864489d0741610219f9,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4293132032
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cf39e8a7e260864489d0741610219f9, type: 3}
