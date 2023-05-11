@@ -44,4 +44,8 @@ public class Settings : MonoBehaviour {
         FPSslider.value = FPSTarget / 10;
         FPSinputField.text = FPSTarget.ToString();
     }
+
+    public void ApplyChanges() {
+        Debug.Log("Applied");
+    }
 }

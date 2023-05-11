@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +10,11 @@ public class OptionsButtonGroup : MonoBehaviour {
     void Start() {
         button = GetComponent<Button>();
         button.onClick.AddListener(Click);
+        OptionsButtonHandler.groupButtonObserver.GroupButtonCliked += EnableButton;
     }
 
     void Click() {
+        OptionsButtonHandler.groupButtonObserver.ClikedGroupButton();
         button.interactable = false;
         body.SetActive(true);
     }
@@ -19,5 +22,6 @@ public class OptionsButtonGroup : MonoBehaviour {
     void EnableButton() {
         button.interactable = true;
         body.SetActive(false);
+        
     }
 }

@@ -5,22 +5,22 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class OptionsSelecter : MonoBehaviour {
-    public enum type {
+    enum type {
         resolution,
-        quality,
     }
-    List<string> choices;
+    [SerializeField] List<string> choices;
+    [SerializeField] type typeOfOption;
     int currentIndex = 0;
-    private TextMeshProUGUI text;
+    TextMeshProUGUI text;
     [SerializeField] Button buttonRight;
     [SerializeField] Button buttonLeft;
     [SerializeField] bool cycleable;
+    [SerializeField] bool generatedOptions;
     void Start() {
         text = GetComponentInChildren<TextMeshProUGUI>();
         buttonRight.onClick.AddListener(ClickNext);
         buttonLeft.onClick.AddListener(ClickPrev);
     }
-
     void ClickPrev() {
         currentIndex--;
         if (currentIndex < 0) {

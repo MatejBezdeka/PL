@@ -1,5 +1,7 @@
 using RetroAesthetics;
+using Scripts.UI;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +13,7 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] GameObject ScoreBoard;
     [SerializeField] TextMeshProUGUI ScoreBoardText;
     [SerializeField] AudioClip buttonSound;
+    [SerializeField] GameObject g;
 
     [SerializeField] AudioClip startSound;
     RetroCameraEffect cameraEffect;
@@ -47,6 +50,7 @@ public class MainMenu : MonoBehaviour {
     public void PressSettingsButton() {
         PlayAudio(buttonSound);
         ChangeVisibility(StartButtons, Settings);
+
     }
 
     public void PressExitButton() {
@@ -55,7 +59,9 @@ public class MainMenu : MonoBehaviour {
     }
     public void PressDifficultyBackButton() {
         PlayAudio(buttonSound);
+        
         ChangeVisibility(StartButtons, DifficultyButtons);
+        
     }
     public void PressSettingsBackButton() {
         PlayAudio(buttonSound);
@@ -68,6 +74,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     void PlayAudio(AudioClip clip) {
+        cameraEffect.Glitch();
         audio.clip = clip;
         audio.Play();
     }
