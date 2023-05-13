@@ -10,7 +10,7 @@ public class OptionsButtonGroup : MonoBehaviour {
     void Start() {
         button = GetComponent<Button>();
         button.onClick.AddListener(Click);
-        OptionsButtonHandler.groupButtonObserver.GroupButtonCliked += EnableButton;
+        OptionsButtonHandler.groupButtonObserver.GroupButtonClicked += EnableButton;
     }
 
     void Click() {

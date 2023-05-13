@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Settings : MonoBehaviour {
+    public static Action applySettings;
     [SerializeField] Slider FPSslider;
     [SerializeField] TMP_InputField FPSinputField;
     int FPSTarget;
@@ -22,13 +24,6 @@ public class Settings : MonoBehaviour {
         }
     }
 
-    public void Backbutton() {
-        
-    }
-
-    public void ResolutionChanged() {
-        
-    }
     public void FPSsliderChanged() {
         FPSTarget = (int)FPSslider.value * 10;
         FPSinputField.text = FPSTarget.ToString();
@@ -46,6 +41,6 @@ public class Settings : MonoBehaviour {
     }
 
     public void ApplyChanges() {
-        Debug.Log("Applied");
+        applySettings.Invoke();
     }
 }
