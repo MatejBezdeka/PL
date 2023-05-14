@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,74 +8,116 @@ using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class OptionsSelecter : MonoBehaviour {
-    enum type {
+    private enum type {
         resolution,
         quality
     }
-    [SerializeField] List<string> choices;
-    [SerializeField] type typeOfOption;
-    int currentIndex = 0;
-    TextMeshProUGUI text;
-    [SerializeField] Button buttonRight;
-    [SerializeField] Button buttonLeft;
-    [SerializeField] bool cycleable;
-    [SerializeField] bool generatedOptions;
-    void Start() {
+
+    [SerializeField] private List<string> choices;
+    [SerializeField] private type typeOfOption;
+    private int currentIndex = 0;
+    private TextMeshProUGUI text;
+    [SerializeField] private Button buttonRight;
+    [SerializeField] private Button buttonLeft;
+    [SerializeField] private bool cycleable;
+    [SerializeField] private bool generatedOptions;
+
+    private void Awake() {
         Settings.applySettings += Save;
         text = GetComponentInChildren<TextMeshProUGUI>();
         buttonRight.onClick.AddListener(ClickNext);
         buttonLeft.onClick.AddListener(ClickPrev);
-        if (choices.Count == 0) {
+        if (choices.Count == 0)
             switch (typeOfOption) {
                 case type.resolution:
                     GetResolutions();
                     break;
-            }    
-        }
-        text.text = choices[currentIndex];
+            }
     }
-    void ClickPrev() {
+
+    private void OnEnable() {
+        Load();
+    }
+
+    private void ClickPrev() {
         currentIndex--;
-        if (currentIndex < 0) {
-            currentIndex = choices.Count;
-        }
-        text.text = choices[currentIndex];
-        if (!cycleable && currentIndex == 0) {
-            buttonLeft.interactable = false;
-        }
-        buttonRight.interactable = true;
+        UpdateUI();
     }
 
-    void ClickNext() {
+    private void ClickNext() {
         currentIndex++;
-        if (currentIndex > choices.Count-1) {
-            currentIndex = 0;
-        }
-        text.text = choices[currentIndex];
-        if (!cycleable && currentIndex == choices.Count-1) {
-            buttonRight.interactable = false;
-        }
+        UpdateUI();
+    }
+
+    private void UpdateUI() {
+        if (currentIndex < 0) currentIndex = choices.Count;
+        if (currentIndex > choices.Count - 1) currentIndex = 0;
         buttonLeft.interactable = true;
+        buttonRight.interactable = true;
+
+        if (!cycleable && currentIndex == choices.Count - 1)
+            buttonRight.interactable = false;
+        if (!cycleable && currentIndex == 0)
+            buttonLeft.interactable = false;
+        text.text = choices[currentIndex];
     }
 
-    void GetResolutions() {
-        foreach (Resolution resolution in Screen.resolutions) {
-            choices.Add(resolution.width + "x" + resolution.height);
-        }
+    private void GetResolutions() {
+        foreach (var resolution in Screen.resolutions) choices.Add(resolution.width + "x" + resolution.height);
     }
 
-    void Save() {
+    private void Save() {
         switch (typeOfOption) {
             case type.resolution:
-                string[] dimensions = choices[currentIndex].Split("x");
-                //PlayerPrefs.SetInt(typeOfOption.ToString()+"W", int.Parse(dimension[0]));
-                //PlayerPrefs.SetInt(typeOfOption.ToString() + "H", int.Parse(dimension[1]));
-                Debug.Log(dimensions[0] + "x" + dimensions[1]);
-                Screen.SetResolution(int.Parse(dimensions[0]), int.Parse(dimensions[0]), false);
+                var dimensions = choices[currentIndex].Split("x");
+                PlayerPrefs.SetInt(typeOfOption + "W", int.Parse(dimensions[0]));
+                PlayerPrefs.SetInt(typeOfOption + "H", int.Parse(dimensions[1]));
                 break;
             default:
-                //PlayerPrefs.SetInt(typeOfOption.ToString(), currentIndex);
+                //quality
+                PlayerPrefs.SetInt(typeOfOption.ToString(), currentIndex);
                 break;
         }
+        Apply();
+    }
+
+    void Apply() {
+        switch (typeOfOption) {
+            case type.resolution:
+                var dimensions = choices[currentIndex].Split("x");
+                Screen.SetResolution(int.Parse(dimensions[0]), int.Parse(dimensions[0]), Screen.fullScreen);
+                break;
+            case type.quality:
+                QualitySettings.SetQualityLevel(currentIndex, true);
+                break;
+        }
+        UpdateUI();
+    }
+
+    void Load() {
+        try {
+            switch (typeOfOption) {
+                case type.resolution:
+                    var height = PlayerPrefs.GetInt(typeOfOption + "W");
+                    var width = PlayerPrefs.GetInt(typeOfOption + "H");
+                    bool found = false;
+                    for (var index = 0; index <= choices.Count - 1; index++) {
+                        var dimensions = choices[index].Split("x");
+                        if (int.Parse(dimensions[0]) == height && int.Parse(dimensions[1]) == width) {
+                            currentIndex = index;
+                            found = true;
+                        }
+                        if (found) break;
+                    }
+                    break;
+                default:
+                    currentIndex = PlayerPrefs.GetInt(typeOfOption.ToString());
+                    break;
+            }
+        }
+        catch (Exception e) {
+            currentIndex = 0;
+        }
+        UpdateUI();
     }
 }

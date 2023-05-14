@@ -1,3 +1,4 @@
+using System;
 using RetroAesthetics;
 using Scripts.UI;
 using TMPro;
@@ -13,8 +14,6 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] GameObject ScoreBoard;
     [SerializeField] TextMeshProUGUI ScoreBoardText;
     [SerializeField] AudioClip buttonSound;
-    [SerializeField] GameObject g;
-
     [SerializeField] AudioClip startSound;
     RetroCameraEffect cameraEffect;
     AudioSource audio;
@@ -50,7 +49,6 @@ public class MainMenu : MonoBehaviour {
     public void PressSettingsButton() {
         PlayAudio(buttonSound);
         ChangeVisibility(StartButtons, Settings);
-
     }
 
     public void PressExitButton() {
@@ -59,7 +57,6 @@ public class MainMenu : MonoBehaviour {
     }
     public void PressDifficultyBackButton() {
         PlayAudio(buttonSound);
-        
         ChangeVisibility(StartButtons, DifficultyButtons);
         
     }

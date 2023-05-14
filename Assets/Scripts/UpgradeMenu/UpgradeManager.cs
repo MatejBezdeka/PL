@@ -1,14 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mime;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UpgradeMenu.Upgrade;
-using UpgradeMenu.Upgrade.Upgrades;
 using Random = System.Random;
 public class UpgradeManager : MonoBehaviour {
     /*
