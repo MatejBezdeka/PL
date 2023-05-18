@@ -864,7 +864,7 @@ MonoBehaviour:
   useScanlines: 1
   scanlineSize: 256
   scanlineIntensity: 0
-  _material: {fileID: 1636127644}
+  _material: {fileID: 548595687}
 --- !u!114 &100171427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,7 +1170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 147403163}
   m_Layer: 5
-  m_Name: resolution (2)
+  m_Name: Vsync
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2642,6 +2642,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9382b769300cfc044af251b5e277edaa, type: 3}
+--- !u!21 &548595687
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/RetroCameraEffect
+  m_Shader: {fileID: 4800000, guid: 2cfdcae76c757405786f1219a383da6e, type: 3}
+  m_ShaderKeywords: BOTTOM_STRETCH_ON CHROMATIC_ON NOISE_BOTTOM_ON NOISE_ON RADIAL_DISTORTION_ON
+    SCANLINES_ON VIGNETTE_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondaryTex:
+        m_Texture: {fileID: 2800000, guid: 05221239b2dfa844ab20f4e51f387fb1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ChromaticAberration: 8.2
+    - _DisplacementAmplitude: 0.0046300003
+    - _DisplacementFrequency: 150
+    - _DisplacementSpeed: 5
+    - _NoiseBottomHeight: 0.04
+    - _NoiseBottomIntensity: 0.47
+    - _OffsetNoiseX: 0.42519146
+    - _OffsetNoiseY: -0.0940993
+    - _StaticIntensity: 0.7
+    - _UseChromaticAberration: 1
+    - _UseDisplacement: 1
+    - _UseStaticNoise: 1
+    - _UseVignette: 0
+    - _Vignette: 0
+    m_Colors:
+    - _OffsetPos: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!4 &548761483 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7645885141681275367, guid: 9382b769300cfc044af251b5e277edaa,
@@ -2725,7 +2772,7 @@ PrefabInstance:
     - target: {fileID: 5400329364041825134, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
       propertyPath: m_Name
-      value: CarouselUIElement
+      value: Options
       objectReference: {fileID: 0}
     - target: {fileID: 5400329364041825135, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
@@ -2901,7 +2948,7 @@ PrefabInstance:
     - target: {fileID: 9092245624091591422, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
       propertyPath: m_text
-      value: 1920x1080
+      value: maybe
       objectReference: {fileID: 0}
     - target: {fileID: 9092245624091591422, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
@@ -4385,6 +4432,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9382b769300cfc044af251b5e277edaa, type: 3}
+--- !u!114 &823743715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5400329364881353097, guid: 9cf39e8a7e260864489d0741610219f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 552620750}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &827458752
 GameObject:
   m_ObjectHideFlags: 0
@@ -8303,6 +8362,32 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 552620750}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1525959386 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5400329364041825134, guid: 9cf39e8a7e260864489d0741610219f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 552620750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1525959389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525959386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50a9be99d4df4e4db801263f360aa28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choices:
+  - Off
+  - On
+  typeOfOption: 2
+  buttonRight: {fileID: 1755853898}
+  buttonLeft: {fileID: 823743715}
+  cycleable: 0
+  generatedOptions: 0
 --- !u!1001 &1534431355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8654,53 +8739,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1635572701}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1636127644
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/RetroCameraEffect
-  m_Shader: {fileID: 4800000, guid: 2cfdcae76c757405786f1219a383da6e, type: 3}
-  m_ShaderKeywords: BOTTOM_STRETCH_ON CHROMATIC_ON NOISE_BOTTOM_ON NOISE_ON RADIAL_DISTORTION_ON
-    SCANLINES_ON VIGNETTE_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SecondaryTex:
-        m_Texture: {fileID: 2800000, guid: 05221239b2dfa844ab20f4e51f387fb1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ChromaticAberration: 8.2
-    - _DisplacementAmplitude: 0.0046300003
-    - _DisplacementFrequency: 150
-    - _DisplacementSpeed: 5
-    - _NoiseBottomHeight: 0.04
-    - _NoiseBottomIntensity: 0.47
-    - _OffsetNoiseX: 0.5109206
-    - _OffsetNoiseY: 0.3921138
-    - _StaticIntensity: 0.7
-    - _UseChromaticAberration: 1
-    - _UseDisplacement: 1
-    - _UseStaticNoise: 1
-    - _UseVignette: 0
-    - _Vignette: 0
-    m_Colors:
-    - _OffsetPos: {r: 0, g: 0, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &1652968691
 GameObject:
   m_ObjectHideFlags: 0
@@ -9397,6 +9435,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 25.56, y: 179.1, z: 0}
+--- !u!114 &1755853898 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5400329363646476434, guid: 9cf39e8a7e260864489d0741610219f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 552620750}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1769464726
 GameObject:
   m_ObjectHideFlags: 0
@@ -15941,7 +15991,7 @@ PrefabInstance:
     - target: {fileID: 5400329364041825134, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}
       propertyPath: m_Name
-      value: Option
+      value: Options
       objectReference: {fileID: 0}
     - target: {fileID: 5400329364041825135, guid: 9cf39e8a7e260864489d0741610219f9,
         type: 3}

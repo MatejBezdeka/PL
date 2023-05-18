@@ -10,7 +10,8 @@ using UnityEngine.UI;
 public class OptionsSelecter : MonoBehaviour {
     private enum type {
         resolution,
-        quality
+        quality,
+        vsync
     }
 
     [SerializeField] private List<string> choices;
@@ -62,10 +63,11 @@ public class OptionsSelecter : MonoBehaviour {
         text.text = choices[currentIndex];
     }
 
+    #region Getters
     private void GetResolutions() {
         foreach (var resolution in Screen.resolutions) choices.Add(resolution.width + "x" + resolution.height);
     }
-
+    #endregion
     private void Save() {
         switch (typeOfOption) {
             case type.resolution:
@@ -74,7 +76,7 @@ public class OptionsSelecter : MonoBehaviour {
                 PlayerPrefs.SetInt(typeOfOption + "H", int.Parse(dimensions[1]));
                 break;
             default:
-                //quality
+                //quality, Vsync
                 PlayerPrefs.SetInt(typeOfOption.ToString(), currentIndex);
                 break;
         }
@@ -90,6 +92,10 @@ public class OptionsSelecter : MonoBehaviour {
             case type.quality:
                 QualitySettings.SetQualityLevel(currentIndex, true);
                 break;
+            case type.vsync:
+                QualitySettings.vSyncCount = currentIndex;
+                break;
+                
         }
         UpdateUI();
     }
