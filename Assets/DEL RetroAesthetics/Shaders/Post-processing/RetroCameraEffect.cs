@@ -6,9 +6,9 @@ namespace RetroAesthetics {
 
     [ExecuteInEditMode]
     [RequireComponent(typeof(Camera))]
-    #if UNITY_5_4_OR_NEWER && !RETRO_SCENE_VIEW_OFF
+    //#if UNITY_5_4_OR_NEWER && !RETRO_SCENE_VIEW_OFF
         [ImageEffectAllowedInSceneView]
-    #endif
+    //#endif
 
     public class RetroCameraEffect : MonoBehaviour
     {
@@ -84,6 +84,10 @@ namespace RetroAesthetics {
         private float _gammaTarget;
         private float _gammaDelta;
         private Action _callback;
+        private static readonly int OffsetNoiseX = Shader.PropertyToID("_OffsetNoiseX");
+        private static readonly int OffsetNoiseY = Shader.PropertyToID("_OffsetNoiseY");
+        private static readonly int DisplacementAmplitude = Shader.PropertyToID("_DisplacementAmplitude");
+        private static readonly int OffsetPos = Shader.PropertyToID("_OffsetPos");
 
         public virtual void Glitch(float amount = 1.0f) {
             Vector2 offsetPos = Vector2.zero;
@@ -148,21 +152,21 @@ namespace RetroAesthetics {
             }
 
             // TV noise
-            _material.SetFloat("_OffsetNoiseX", Random.Range(0f, 1.0f));
-            float offsetNoise = _material.GetFloat("_OffsetNoiseY");
-            _material.SetFloat("_OffsetNoiseY", offsetNoise + Random.Range(-0.05f, 0.05f));
+            _material.SetFloat(OffsetNoiseX, Random.Range(0f, 1.0f));
+            float offsetNoise = _material.GetFloat(OffsetNoiseY);
+            _material.SetFloat(OffsetNoiseY, offsetNoise + Random.Range(-0.05f, 0.05f));
 
             // Distortion
             if (randomGlitches != GlitchDirections.None) {
                 if (Random.Range(0, 15) == 0) {
-                    _material.SetFloat("_DisplacementAmplitude", Random.Range(0f, 10f * displacementAmplitude / 1000f));
+                    _material.SetFloat(DisplacementAmplitude, Random.Range(0f, 10f * displacementAmplitude / 1000f));
                 } else {
-                    _material.SetFloat("_DisplacementAmplitude", displacementAmplitude / 1000f);
+                    _material.SetFloat(DisplacementAmplitude, displacementAmplitude / 1000f);
                 }
             }
 
             // Fullscreen shift - after each jump return to center.
-            Vector2 offsetPos = _material.GetVector("_OffsetPos");
+            Vector2 offsetPos = _material.GetVector(OffsetPos);
 
             if (offsetPos.y > 0.0f) {
                 offsetPos.y -= Random.Range(0f, +offsetPos.y);
