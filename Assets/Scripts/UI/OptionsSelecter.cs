@@ -60,7 +60,7 @@ public class OptionsSelecter : MonoBehaviour {
     }
 
     private void UpdateUI() {
-        if (currentIndex < 0) currentIndex = choices.Count;
+        if (currentIndex < 0) currentIndex = choices.Count-1;
         if (currentIndex > choices.Count - 1) currentIndex = 0;
         buttonLeft.interactable = true;
         buttonRight.interactable = true;
@@ -111,7 +111,7 @@ public class OptionsSelecter : MonoBehaviour {
                 QualitySettings.vSyncCount = currentIndex;
                 break;
             case type.displayMode:
-                FullScreenMode mode = FullScreenMode.ExclusiveFullScreen;
+                FullScreenMode mode;
                 switch (currentIndex) {
                     case 0:
                         mode = FullScreenMode.FullScreenWindow;
@@ -121,6 +121,9 @@ public class OptionsSelecter : MonoBehaviour {
                         break;
                     case 2:
                         mode = FullScreenMode.ExclusiveFullScreen;
+                        break;
+                    default:
+                        mode = FullScreenMode.FullScreenWindow;
                         break;
                 }
 
