@@ -1,11 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using CarouselUI.Demo;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class OptionsSelecter : MonoBehaviour {
@@ -27,7 +23,9 @@ public class OptionsSelecter : MonoBehaviour {
     [SerializeField] private bool cycleable;
     [SerializeField] private bool generatedOptions;
 
-    private void Awake() {
+    [SerializeField] TextMeshProUGUI down;
+
+    void Awake() {
         Settings.applySettings += Save;
         text = GetComponentInChildren<TextMeshProUGUI>();
         buttonRight.onClick.AddListener(ClickNext);
@@ -45,21 +43,21 @@ public class OptionsSelecter : MonoBehaviour {
             }
     }
 
-    private void OnEnable() {
+    void OnEnable() {
         Load();
     }
 
-    private void ClickPrev() {
+    void ClickPrev() {
         currentIndex--;
         UpdateUI();
     }
 
-    private void ClickNext() {
+    void ClickNext() {
         currentIndex++;
         UpdateUI();
     }
 
-    private void UpdateUI() {
+    void UpdateUI() {
         if (currentIndex < 0) currentIndex = choices.Count-1;
         if (currentIndex > choices.Count - 1) currentIndex = 0;
         buttonLeft.interactable = true;
@@ -73,9 +71,6 @@ public class OptionsSelecter : MonoBehaviour {
     }
 
     #region Getters
-    private void GetResolutions() {
-        foreach (var resolution in Screen.resolutions) choices.Add(resolution.width + "x" + resolution.height);
-    }
 
     void GetDisplays() {
         for (int i = 0; i < Display.displays.Length; i++) {
@@ -83,7 +78,16 @@ public class OptionsSelecter : MonoBehaviour {
         }
     }
     #endregion
-    private void Save() {
+    void GetResolutions() {
+        int hz = Screen.resolutions[0].refreshRate;
+        foreach (var resolution in Screen.resolutions) {
+            if (resolution.refreshRate != hz) continue;
+            choices.Add(resolution.width + "x" + resolution.height);
+        }
+    }
+
+    void Save() {
+//>>>>>>> Stashed changes
         switch (typeOfOption) {
             case type.resolution:
                 var dimensions = choices[currentIndex].Split("x");
