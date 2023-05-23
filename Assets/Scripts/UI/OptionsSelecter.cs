@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class OptionsSelecter : MonoBehaviour {
+    // resoluce se hádá s displaymodem
+    // windowed zmizí rámeček
+    static bool mod;
     private enum type {
         resolution,
         quality,
@@ -41,6 +45,7 @@ public class OptionsSelecter : MonoBehaviour {
                 case type.antiAlias:
                     break;
             }
+
     }
 
     void OnEnable() {
@@ -87,8 +92,7 @@ public class OptionsSelecter : MonoBehaviour {
     }
 
     void Save() {
-//>>>>>>> Stashed changes
-        switch (typeOfOption) {
+         switch (typeOfOption) {
             case type.resolution:
                 var dimensions = choices[currentIndex].Split("x");
                 PlayerPrefs.SetInt(typeOfOption + "W", int.Parse(dimensions[0]));
@@ -106,7 +110,7 @@ public class OptionsSelecter : MonoBehaviour {
         switch (typeOfOption) {
             case type.resolution:
                 var dimensions = choices[currentIndex].Split("x");
-                Screen.SetResolution(int.Parse(dimensions[0]), int.Parse(dimensions[0]), Screen.fullScreenMode);
+                Screen.SetResolution(int.Parse(dimensions[0]), int.Parse(dimensions[0]), mod);
                 break;
             case type.quality:
                 QualitySettings.SetQualityLevel(currentIndex, true);
@@ -115,23 +119,23 @@ public class OptionsSelecter : MonoBehaviour {
                 QualitySettings.vSyncCount = currentIndex;
                 break;
             case type.displayMode:
+                
                 FullScreenMode mode;
                 switch (currentIndex) {
                     case 0:
-                        mode = FullScreenMode.FullScreenWindow;
+                        mod = true;
                         break;
                     case 1:
-                        mode = FullScreenMode.Windowed;
-                        break;
-                    case 2:
-                        mode = FullScreenMode.ExclusiveFullScreen;
+                        mod = false;
                         break;
                     default:
-                        mode = FullScreenMode.FullScreenWindow;
+                        mod = true;
                         break;
                 }
-
-                Screen.fullScreenMode = mode;
+                Screen.SetResolution(Screen.width, Screen.height, mod);
+                Debug.Log(Screen.fullScreen + " " + Screen.fullScreenMode);
+                down.text = currentIndex + ": " + Screen.fullScreen + " " + Screen.fullScreenMode + " " + mod;
+                //Screen.fullScreen = !Screen.fullScreen;
                 break;
             case type.display:
                 if (Display.displays.Length > currentIndex) {
@@ -143,9 +147,10 @@ public class OptionsSelecter : MonoBehaviour {
                 }
                 break;
         }
+
         UpdateUI();
     }
-
+    
     void Load() {
         try {
             switch (typeOfOption) {
