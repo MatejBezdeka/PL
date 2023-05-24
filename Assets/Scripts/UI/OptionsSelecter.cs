@@ -1,25 +1,18 @@
 using System;
 using System.Collections.Generic;
+using Scripts.UI;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionsSelecter : MonoBehaviour {
+public class OptionsSelecter : OptionsObject {
     // resoluce se hádá s displaymodem
     // windowed zmizí rámeček
     static bool mod;
-    private enum type {
-        resolution,
-        quality,
-        vsync,
-        displayMode,
-        display,
-        antiAlias,
-    }
+    
 
     [SerializeField] private List<string> choices;
-    [SerializeField] private type typeOfOption;
     private int currentIndex = 0;
     private TextMeshProUGUI text;
     [SerializeField] private Button buttonRight;
@@ -29,8 +22,7 @@ public class OptionsSelecter : MonoBehaviour {
 
     [SerializeField] TextMeshProUGUI down;
 
-    void Awake() {
-        Settings.applySettings += Save;
+    protected override void Awake() {
         text = GetComponentInChildren<TextMeshProUGUI>();
         buttonRight.onClick.AddListener(ClickNext);
         buttonLeft.onClick.AddListener(ClickPrev);
@@ -42,15 +34,11 @@ public class OptionsSelecter : MonoBehaviour {
                 case type.display:
                     GetDisplays();
                     break;
-                case type.antiAlias:
-                    break;
             }
-
+        base.Awake();
     }
 
-    void OnEnable() {
-        Load();
-    }
+    
 
     void ClickPrev() {
         currentIndex--;
@@ -78,8 +66,11 @@ public class OptionsSelecter : MonoBehaviour {
     #region Getters
 
     void GetDisplays() {
-        for (int i = 0; i < Display.displays.Length; i++) {
-            choices.Add("Display " + i++);
+        Debug.Log(Display.displays.Length);
+        int j = 0;
+        foreach (var display in Display.displays) {
+            choices.Add("Display" + j);
+            j++;
         }
     }
     #endregion
@@ -91,7 +82,7 @@ public class OptionsSelecter : MonoBehaviour {
         }
     }
 
-    void Save() {
+    protected override void Save() {
          switch (typeOfOption) {
             case type.resolution:
                 var dimensions = choices[currentIndex].Split("x");
@@ -106,7 +97,7 @@ public class OptionsSelecter : MonoBehaviour {
         Apply();
     }
 
-    void Apply() {
+    protected override void Apply() {
         switch (typeOfOption) {
             case type.resolution:
                 var dimensions = choices[currentIndex].Split("x");
@@ -119,8 +110,6 @@ public class OptionsSelecter : MonoBehaviour {
                 QualitySettings.vSyncCount = currentIndex;
                 break;
             case type.displayMode:
-                
-                FullScreenMode mode;
                 switch (currentIndex) {
                     case 0:
                         mod = true;
@@ -133,13 +122,10 @@ public class OptionsSelecter : MonoBehaviour {
                         break;
                 }
                 Screen.SetResolution(Screen.width, Screen.height, mod);
-                Debug.Log(Screen.fullScreen + " " + Screen.fullScreenMode);
-                down.text = currentIndex + ": " + Screen.fullScreen + " " + Screen.fullScreenMode + " " + mod;
-                //Screen.fullScreen = !Screen.fullScreen;
                 break;
             case type.display:
-                if (Display.displays.Length > currentIndex) {
-                    Display.displays[0].Activate();
+                if (Display.displays.Length == 1) {
+                    Display.main.Activate();
                     currentIndex = 0;
                 }
                 else {
@@ -151,7 +137,7 @@ public class OptionsSelecter : MonoBehaviour {
         UpdateUI();
     }
     
-    void Load() {
+    protected override void Load() {
         try {
             switch (typeOfOption) {
                 case type.resolution:

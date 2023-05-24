@@ -7,16 +7,14 @@ using UnityEngine.UI;
 
 public class Settings : MonoBehaviour {
     public static Action applySettings;
-    [SerializeField] Slider FPSslider;
-    [SerializeField] TMP_InputField FPSinputField;
+    public static Action loadSettings;
+    
     int FPSTarget;
     Resolution[] resolutions;
     List<Resolution> list;
     void Start()
     {
-        //load
-        
-        //get resolutions
+        loadSettings?.Invoke();
         resolutions = Screen.resolutions;
         list = new List<Resolution>();
         foreach (Resolution res in resolutions) {
@@ -24,20 +22,8 @@ public class Settings : MonoBehaviour {
         }
     }
 
-    public void FPSsliderChanged() {
-        FPSTarget = (int)FPSslider.value * 10;
-        FPSinputField.text = FPSTarget.ToString();
-    }
-
-    public void FPStextChanged() {
-        FPSTarget = (int)(int.Parse(FPSinputField.text)/10) *10;
-        if (FPSTarget/10 < FPSslider.minValue) {
-            FPSTarget = (int) FPSslider.minValue * 10;
-        }else if (FPSTarget/10 > FPSslider.maxValue) {
-            FPSTarget = (int)FPSslider.maxValue * 10;
-        }
-        FPSslider.value = FPSTarget / 10;
-        FPSinputField.text = FPSTarget.ToString();
+    private void OnEnable() {
+        loadSettings?.Invoke();
     }
 
     public void ApplyChanges() {
