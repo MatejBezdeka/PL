@@ -19,6 +19,8 @@ public class OptionsSelecter : OptionsObject {
     [SerializeField] private Button buttonLeft;
     [SerializeField] private bool cycleable;
     [SerializeField] private bool generatedOptions;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Canvas canvas;
 
     [SerializeField] TextMeshProUGUI down;
 
@@ -124,13 +126,9 @@ public class OptionsSelecter : OptionsObject {
                 Screen.SetResolution(Screen.width, Screen.height, mod);
                 break;
             case type.display:
-                if (Display.displays.Length == 1) {
-                    Display.main.Activate();
-                    currentIndex = 0;
-                }
-                else {
-                    Display.displays[currentIndex].Activate();
-                }
+                //Display.displays[currentIndex].Activate();
+                mainCamera.targetDisplay = currentIndex;
+                canvas.targetDisplay = currentIndex;
                 break;
         }
 
