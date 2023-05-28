@@ -12,7 +12,9 @@ using Random = System.Random;
 
 public class GameManager : MonoBehaviour {
     public static GameManager manager = new GameManager();
-    static int dif;
+    int dif;
+    int f = 5; // Difficulty parameter // smaller = worse at least 5 and max 1
+    int d = 1;       // Wave parameter // 1 or -0.5 is ok max 3.5 min -3
     Random rn = new Random();
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] List<GameObject> typesOfEnemies = new List<GameObject>();
@@ -30,6 +32,14 @@ public class GameManager : MonoBehaviour {
     string secondsText = "00";
     int enemiesWorthInArena = 0;
     public gameState currentGameState { get; private set; } = gameState.go;
+    int CalculateDifficulty(int time)
+    {
+
+        if (time < 25)
+            return (int)((time / f) + (d / 10.0) * ((Math.Sin(time) * 10) / 2) + 1);
+        else
+            return (int)(Math.Pow(time - 25, 1.1) + (time / f) + (d / 10.0) * ((Math.Sin(time) * 10) / 2) + 1);
+    }
 
     public enum gameState {
         go,
@@ -48,6 +58,7 @@ public class GameManager : MonoBehaviour {
         currentGameState = gameState.go;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
+        f = 5 - dif;
         //find all spawnpoints    
         listOfSpawns = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
         enemiesWorthInArena = 0;
