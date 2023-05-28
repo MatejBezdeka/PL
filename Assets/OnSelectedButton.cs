@@ -13,7 +13,7 @@ public class OnSelectedButton : StateMachineBehaviour {
 
         }
         catch (Exception e) {
-            
+            // ignored
         }
     }
 

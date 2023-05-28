@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] GameObject StartButtons;
     [SerializeField] GameObject DifficultyButtons;
     [SerializeField] GameObject Settings;
+    [SerializeField] GameObject Credits;
     [SerializeField] GameObject ScoreBoard;
     [SerializeField] TextMeshProUGUI ScoreBoardText;
     [SerializeField] AudioClip buttonSound;
@@ -30,46 +31,32 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void PressDifficultyButton(int difficulty) {
-        Debug.Log(difficulty);
         PlayAudio(buttonSound);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         GameManager.manager.SetDifficulty(difficulty);
-        cameraEffect.FadeOut(0.5f);
         SceneManager.LoadSceneAsync("Loading");
-        
         SceneManager.LoadSceneAsync("MainScene");
-        }
-    
-    public void PressStartButton() {
-        PlayAudio(buttonSound);
-        ChangeVisibility(StartButtons, DifficultyButtons);
     }
-    
-    public void PressSettingsButton() {
-        PlayAudio(buttonSound);
-        ChangeVisibility(StartButtons, Settings);
-    }
-
     public void PressExitButton() {
         Application.Quit();
         Debug.Log("you quit");
     }
-    public void PressDifficultyBackButton() {
-        PlayAudio(buttonSound);
+    public void PressStartButton() {
         ChangeVisibility(StartButtons, DifficultyButtons);
-        
     }
-    public void PressSettingsBackButton() {
-        PlayAudio(buttonSound);
+    public void PressSettingsButton() {
         ChangeVisibility(StartButtons, Settings);
     }
-
+    public void PressCredit() {
+        ChangeVisibility(StartButtons, Credits);
+    }
     void ChangeVisibility(GameObject obj1, GameObject obj2) {
+        PlayAudio(buttonSound);
         obj1.SetActive(!obj1.activeSelf);
         obj2.SetActive(!obj2.activeSelf);
     }
-
+    
     void PlayAudio(AudioClip clip) {
         cameraEffect.Glitch();
         audio.clip = clip;

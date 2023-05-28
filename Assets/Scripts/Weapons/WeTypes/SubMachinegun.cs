@@ -7,7 +7,7 @@ public class SubMachinegun : Weapon
         magSize = 25;
         cooldown = 1.6f;
         reloadCooldown = 1.2f;
-        weaponSpread = 0;
+        weaponSpread = 0.08f;
         base.Awake();
     }
 

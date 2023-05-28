@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour {
         manager = GetComponent<GameManager>();
         manager.SetDifficulty(difficulty);
         audioSource = gameObject.AddComponent<AudioSource>();
+        //Load settings = volume, Fov, fps, filters
         audioSource.volume = 0.5f;
     }
 

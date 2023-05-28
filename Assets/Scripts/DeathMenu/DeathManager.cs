@@ -17,6 +17,8 @@ public class DeathManager : MonoBehaviour {
     Saving memory;
     public static int score;
     void Start() {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         memory = gameObject.AddComponent<Saving>();
         memory.Load();
         audio = gameObject.AddComponent<AudioSource>();

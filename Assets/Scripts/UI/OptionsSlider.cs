@@ -7,13 +7,6 @@ namespace Scripts.UI {
         private int value;
         [SerializeField] Slider slider;
         [SerializeField] TMP_InputField inputField;
-        protected override void Awake() {
-            
-            base.Awake();
-            
-            //slider.onValueChanged.AddListener(SliderChanged);
-            //inputField.onEndEdit.AddListener(TextChanged);
-        }
 
         protected override void Load() {
             PlayerPrefs.GetInt(typeOfOption.ToString(), value);
@@ -34,9 +27,13 @@ namespace Scripts.UI {
                     }
                     else {
                         Application.targetFrameRate = value;
-                    }
+                    } 
                     break;
             }
+        }
+
+        protected override void ApplyAtStart() {
+            //sensitivity, fov jinde
         }
 
         public void SliderChanged() {
@@ -50,6 +47,14 @@ namespace Scripts.UI {
                         inputField.text = value.ToString();
                     }
                     break;
+                case type.sensitivity:
+                    value = (int) slider.value;
+                    inputField.text = value + "%";
+                    break;
+                case type.fov:
+                    value = (int) slider.value;
+                    inputField.text = value.ToString();
+                    break;
             }
         }
 
@@ -60,10 +65,19 @@ namespace Scripts.UI {
                     if (value/10 < slider.minValue) {
                         value = (int) slider.minValue * 10;
                     }else if (value/10 > slider.maxValue) {
-                        value = (int)slider.maxValue * 10;
+                        value = (int) slider.maxValue * 10;
                     }
                     slider.value = value / 10;
                     inputField.text = value.ToString(); 
+                    break;
+                case type.sensitivity:
+                case type.fov:
+                    value = (int.Parse(inputField.text));
+                    if (value < slider.minValue) {
+                        value = (int) slider.minValue;
+                    }else if (value > slider.maxValue) {
+                        value = (int) slider.maxValue;
+                    } 
                     break;
             }
         }

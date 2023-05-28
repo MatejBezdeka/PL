@@ -6,18 +6,6 @@ using UnityEngine.UI;
 using UpgradeMenu.Upgrade;
 using Random = System.Random;
 public class UpgradeManager : MonoBehaviour {
-    /*
-     * TODO:
-     * kontrola duplicity done?
-     * use upgradů -> ať konečně něco dělají
-     * změna barev (+ více obrázků)
-     * více upgradů
-     * upgrade zbraní
-     * šance na vzácnější dropy -> luck
-     * lepší text :) -> zahrnout typ upgradu
-     * automatické detekování možných zbraní -> nemusel bych každou dávat zvlášť ?
-     * (nemohl bych dávat jiné popisky ani obrázky!(možná jo ale divně))
-     */
     Random rn = new Random();
     [SerializeField] PlayerController playerController;
     [SerializeField] WeaponController weaponController;
@@ -29,7 +17,6 @@ public class UpgradeManager : MonoBehaviour {
     [SerializeField] List<Image> listOfPanels = new List<Image>();
     [SerializeField] GameObject upgrades;
     [SerializeField] AudioClip levelUpSound;
-    [SerializeField] AudioClip buttonHighlight;
     [SerializeField] AudioClip buttonClick;
     List<int> upgradeActive = new List<int>();
     WeaponUpgrade wea;

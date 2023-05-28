@@ -5,7 +5,7 @@ public class AssaultRifle : Weapon {
         magSize = 60;
         cooldown = 0.1f;
         reloadCooldown = 3.2f;
-        weaponSpread = 0;
+        weaponSpread = 0.1f;
         base.Awake();
     }
     

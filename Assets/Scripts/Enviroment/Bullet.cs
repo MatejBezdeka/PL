@@ -41,7 +41,10 @@ public class Bullet : MonoBehaviour {
             case "Enemy":
                 if (friendly)
                     collisioned.gameObject.GetComponent<Enemy>().GetHit(damage, shotBy, transform.position);
+                //else if(dif == hard)
+                //return
                 break; 
+            
         } 
         Destroy(gameObject);
     }

@@ -18,9 +18,6 @@ public class OptionsSelecter : OptionsObject {
     [SerializeField] private Button buttonRight;
     [SerializeField] private Button buttonLeft;
     [SerializeField] private bool cycleable;
-    [SerializeField] private bool generatedOptions;
-    [SerializeField] private Camera mainCamera;
-    [SerializeField] private Canvas canvas;
 
     [SerializeField] TextMeshProUGUI down;
 
@@ -75,7 +72,7 @@ public class OptionsSelecter : OptionsObject {
             j++;
         }
     }
-    #endregion
+    
     void GetResolutions() {
         int hz = Screen.resolutions[0].refreshRate;
         foreach (var resolution in Screen.resolutions) {
@@ -83,7 +80,7 @@ public class OptionsSelecter : OptionsObject {
             choices.Add(resolution.width + "x" + resolution.height);
         }
     }
-
+    #endregion
     protected override void Save() {
          switch (typeOfOption) {
             case type.resolution:
@@ -127,14 +124,18 @@ public class OptionsSelecter : OptionsObject {
                 break;
             case type.display:
                 //Display.displays[currentIndex].Activate();
-                mainCamera.targetDisplay = currentIndex;
-                canvas.targetDisplay = currentIndex;
+                //mainCamera.targetDisplay = currentIndex;
+                //canvas.targetDisplay = currentIndex;
                 break;
         }
 
         UpdateUI();
     }
-    
+
+    protected override void ApplyAtStart() {
+        //filters
+    }
+
     protected override void Load() {
         try {
             switch (typeOfOption) {
