@@ -22,7 +22,7 @@ public class Settings : MonoBehaviour {
         }
     }
 
-    private void OnEnable() {
+    void OnEnable() {
         loadSettings?.Invoke();
     }
 

@@ -23,7 +23,7 @@ namespace RetroAesthetics {
 		}
 		
 		void Update () {
-			offset += scrollSpeed * Time.deltaTime * Application.targetFrameRate;
+			offset += scrollSpeed * (Time.deltaTime /* * Application.targetFrameRate*/);
 			target.SetTextureOffset(textureName, offset);
 		}
 	}

@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         memory = gameObject.AddComponent<Saving>();
-        audio = gameObject.AddComponent<AudioSource>();
+        audio = gameObject.GetComponent<AudioSource>();
         cameraEffect = FindObjectOfType<RetroCameraEffect>();
         cameraEffect.FadeIn();
         memory.Load();

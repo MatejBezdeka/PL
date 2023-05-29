@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 namespace Scripts.UI {
@@ -7,11 +8,15 @@ namespace Scripts.UI {
         private int value;
         [SerializeField] Slider slider;
         [SerializeField] TMP_InputField inputField;
-
+        AudioMixer mixer;
+        
         protected override void Load() {
+            if (typeOfOption is type.masterVolume or type.effectsVolume or type.musicVolume) mixer = FindObjectOfType<AudioMixer>();
+
             PlayerPrefs.GetInt(typeOfOption.ToString(), value);
             SliderChanged();
             TextChanged();
+            
         }
 
         protected override void Save() {
@@ -29,13 +34,26 @@ namespace Scripts.UI {
                         Application.targetFrameRate = value;
                     } 
                     break;
+                case type.masterVolume:
+                    SetMixer("Volume");
+                    break;
+                case type.musicVolume:
+                    SetMixer("Music");
+                    break;
+                case type.effectsVolume:
+                    SetMixer("Effects");                    
+                    break;
             }
+        }
+
+        void SetMixer(string name) {
+            mixer.SetFloat(name, Mathf.Log10(value / 120f) * 20);
         }
 
         protected override void ApplyAtStart() {
             //sensitivity, fov jinde
         }
-
+        // Mixer.SetFloat("Volume", Mathf.Log10(value/100) * 20);
         public void SliderChanged() {
             switch (typeOfOption) {
                 case type.maxFPS:
@@ -47,6 +65,9 @@ namespace Scripts.UI {
                         inputField.text = value.ToString();
                     }
                     break;
+                case type.masterVolume:
+                case type.musicVolume:
+                case type.effectsVolume:
                 case type.sensitivity:
                     value = (int) slider.value;
                     inputField.text = value + "%";
@@ -70,9 +91,8 @@ namespace Scripts.UI {
                     slider.value = value / 10;
                     inputField.text = value.ToString(); 
                     break;
-                case type.sensitivity:
-                case type.fov:
-                    value = (int.Parse(inputField.text));
+                default:
+                    value = int.Parse(inputField.text);
                     if (value < slider.minValue) {
                         value = (int) slider.minValue;
                     }else if (value > slider.maxValue) {

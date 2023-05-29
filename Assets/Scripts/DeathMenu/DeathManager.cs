@@ -21,7 +21,7 @@ public class DeathManager : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
         memory = gameObject.AddComponent<Saving>();
         memory.Load();
-        audio = gameObject.AddComponent<AudioSource>();
+        audio = gameObject.GetComponent<AudioSource>();
         scoreBoard.text = memory.scoreBoardText();
         newScore.text = "Score: " + score;
     }

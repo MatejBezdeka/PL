@@ -30,6 +30,7 @@ namespace Scripts.UI {
  * 
  * ...
  */
+        
         protected virtual void Awake() {
             switch (typeOfOption) {
                 case type.filters:
@@ -41,6 +42,7 @@ namespace Scripts.UI {
             Apply();
         }
         protected abstract void Load();
+
         protected abstract void Save();
         protected abstract void Apply();
         protected abstract void ApplyAtStart();

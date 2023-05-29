@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour {
         upgradeManager = upgradeCanvas.GetComponent<UpgradeManager>();
         manager = GetComponent<GameManager>();
         manager.SetDifficulty(difficulty);
-        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         //Load settings = volume, Fov, fps, filters
         audioSource.volume = 0.5f;
     }
