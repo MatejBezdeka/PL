@@ -12,6 +12,10 @@ public class Pistol : Weapon {
         muzzleFlash.transform.position = gunBarrel.position;
         base.Awake();
     }
+
+    void Start() {
+        playerInput = playerController.playerInput;
+    }
     protected void Update() {
         base.update();
     }

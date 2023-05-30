@@ -3,6 +3,8 @@ using RetroAesthetics;
 using Scripts.UI;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 public class CameraController : MonoBehaviour {
     float sensitivity = 1f;
     Camera camera;
@@ -10,13 +12,15 @@ public class CameraController : MonoBehaviour {
     [SerializeField] CharacterController player;
     [SerializeField] Transform leftArm;
     [SerializeField] GameObject hit;
-    private RetroCameraEffect retroEffect;
-    private cPrecision colorEffect;
+    RetroCameraEffect retroEffect;
+    cPrecision colorEffect;
+    PlayerInput playerInput;
     void Start() {
         colorEffect = gameObject.GetComponent<cPrecision>();
         retroEffect = gameObject.GetComponent<RetroCameraEffect>();
         camera = Camera.main;
         Settings.applySettings += ChangeSettings;
+        playerInput = GetComponentInParent<PlayerInput>();
         ChangeSettings();
     }
 
@@ -36,8 +40,10 @@ public class CameraController : MonoBehaviour {
         if (GameManager.manager.currentGameState != GameManager.gameState.go) {
             return;
         }
-        vector.x += Input.GetAxis("Mouse X") * sensitivity;
-        vector.y -= Input.GetAxis("Mouse Y") * sensitivity;
+
+        Vector2 input = playerInput.actions["Look"].ReadValue<Vector2>();
+        vector.x += input.x * (sensitivity/10);
+        vector.y -= input.y * (sensitivity/10);
         vector.y = Mathf.Clamp(vector.y, -90, 90);
         camera.transform.rotation = Quaternion.Euler(vector.y, vector.x, 0);
         player.transform.rotation = Quaternion.Euler(0, vector.x, 0);

@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
@@ -21,7 +22,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField] Canvas mainCanvas;
     [SerializeField] Canvas pauseCanvas;
     [SerializeField] Canvas upgradeCanvas;
-   // [SerializeField] Slider volume;
+    [SerializeField] PlayerInput playerInput;
+    // [SerializeField] Slider volume;
     AudioSource audioSource;
     UpgradeManager upgradeManager;
     public int difficulty { get; private set; }
@@ -78,14 +80,14 @@ public class GameManager : MonoBehaviour {
        
         switch (currentGameState) {
             case gameState.go:
-                if (Input.GetKeyDown(KeyCode.Escape)) {
+                if (/*Input.GetKeyDown(KeyCode.Escape)*/ playerInput.actions["Pause"].triggered) {
                     Pause();
                     return;
                 }
                 UpdateTime();
                 break;
             case gameState.stop:
-                if (Input.GetKeyDown(KeyCode.Escape)) {
+                if (/*Input.GetKeyDown(KeyCode.Escape)*/ playerInput.actions["Pause"].triggered) {
                     Pause();
                     return;
                 }
@@ -95,10 +97,6 @@ public class GameManager : MonoBehaviour {
             case gameState.boss:
                 break;
         }
-        if (Input.GetKeyDown(KeyCode.U)) {
-            Upgrade();
-        }
-        
     }
 
     //Invoke(nameof(shootBullet), 0.1f * i);

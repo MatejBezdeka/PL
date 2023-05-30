@@ -13,7 +13,6 @@ namespace Scripts.UI {
             display,
             filters,
             maxFPS,
-            fpsCounter,
             fov,
             masterVolume,
             musicVolume,
@@ -21,14 +20,11 @@ namespace Scripts.UI {
             sensitivity
         }
 /*
- * UP,DOWN,LEFT,RIGHT
- * JUMP, DASH
- * FIRE
- * WEAPON 1,2,3,4
- * RELOAD
- * PAUSE?
- * 
- * ...
+ * UP,DOWN,LEFT,RIGHT ?
+ * JUMP, DASH +
+ * FIRE +
+ * WEAPON 1,2,3,4 +
+ * RELOAD +
  */
         
         protected virtual void Awake() {
@@ -37,14 +33,13 @@ namespace Scripts.UI {
                     break;
             }
             Settings.applySettings += Save;
+            Settings.applySettings += Apply;
             Settings.loadSettings += Load;
             Load();
             Apply();
         }
         protected abstract void Load();
-
         protected abstract void Save();
         protected abstract void Apply();
-        protected abstract void ApplyAtStart();
     }
 }

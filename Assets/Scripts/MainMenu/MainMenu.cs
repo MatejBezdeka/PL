@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour {
         cameraEffect.FadeIn();
         memory.Load();
         ScoreBoardText.text = memory.scoreBoardText();
+        Settings.SetActive(false);
     }
 
     public void PressDifficultyButton(int difficulty) {

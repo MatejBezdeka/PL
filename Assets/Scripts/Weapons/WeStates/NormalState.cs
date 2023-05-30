@@ -17,13 +17,15 @@ public class NormalState : WeaponState {
 
     protected override void update() {
         weapon.update();
-        if (Input.GetMouseButtonDown(0)) {
+        if (/*Input.GetButtonDown("Fire")*/ weapon.playerInput.actions["Fire"].triggered) {
+            //TODO
             nextState = new ShootState(weapon, player);
             stage = stateStage.exit;
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.R)) {
+        if (/*Input.GetButtonDown("Reload")*/ weapon.playerInput.actions["Reload"].triggered) {
+            //TODO
             if (weapon.reloading == false && weapon.bulletsInMag != weapon.magSize) {
                 nextState = new ReloadingState(weapon, player);
                 stage = stateStage.exit;

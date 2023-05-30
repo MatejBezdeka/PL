@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Scripts.UI;
@@ -5,9 +6,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class OptionsButtonGroup : MonoBehaviour {
-    private Button button;
+    Button button;
     [SerializeField] GameObject body;
-    void Start() {
+    
+
+    void OnEnable() {
         button = GetComponent<Button>();
         button.onClick.AddListener(Click);
         OptionsButtonHandler.groupButtonObserver.GroupButtonClicked += EnableButton;

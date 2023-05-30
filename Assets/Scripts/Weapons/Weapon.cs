@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour {
@@ -30,6 +31,7 @@ public class Weapon : MonoBehaviour {
     [SerializeField] protected PlayerController playerController;
     [SerializeField] protected ParticleSystem muzzleFlash;
     [SerializeField] protected AudioClip shootSound;
+    public PlayerInput playerInput;
     [SerializeField] public AudioClip reloadSoundStart;
     [SerializeField] public AudioClip reloadSoundEnd;
     [SerializeField] public AudioClip switchSoundStart;
@@ -43,8 +45,10 @@ public class Weapon : MonoBehaviour {
         reloading = false;
     }
 
-    void Start() {
+    protected void Start() {
         weaponUpgrader = gameObject.AddComponent<WeaponUpgrader>();
+        playerInput = playerController.playerInput;
+
     }
 
     public virtual void Attack() {

@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 public class PlayerController : MonoBehaviour {
     CharacterController controller;
     public PlayerUpgrader playerUpgrader { get; private set; }
@@ -12,12 +14,12 @@ public class PlayerController : MonoBehaviour {
     public int hp { get; protected internal set; }
     public float xpMultiplayer { get; internal set; } = 1;
     public float scoreMultiplayer { get; internal set; }  = 1;
-    protected float playerSpeed = 6.5f;
+    float playerSpeed = 6.5f;
     float jumpHeight = 0.5f;
     float gravity = 10;
     int armor = 1;
     //float dmgMultiplayer = 1;
-    public StatsHandler statsHandler { get; protected set; }
+    public StatsHandler statsHandler;
     int score = 0;
     
     // dash
@@ -27,14 +29,17 @@ public class PlayerController : MonoBehaviour {
     float dashCooldown = 0.8f;
     float currentDashCooldown = 0;
     int dashCount = 3;
-    protected int maxDashes = 3;
+    int maxDashes = 3;
+
+    public PlayerInput playerInput;
     
-    void Start() {
+    void Awake() {
         maxHp = 1000;
         hp = maxHp;
         statsHandler = gameObject.GetComponent<StatsHandler>();
         controller = gameObject.GetComponent<CharacterController>();
         playerUpgrader = gameObject.AddComponent<PlayerUpgrader>();
+        playerInput = gameObject.GetComponent<PlayerInput>();
     }
 
      void Update() {
@@ -60,16 +65,20 @@ public class PlayerController : MonoBehaviour {
             jumped = false;
             jumpedTwo = false;
         }
-        move = transform.right * (Input.GetAxis("Horizontal")) + transform.forward * (Input.GetAxis("Vertical"));
+
+        Vector2 input = playerInput.actions["Move"].ReadValue<Vector2>();
+        move = new Vector3(input.x, 0, input.y);
+        move = move.x * transform.right + move.z * transform.forward;
+        //move = transform.right * (Input.GetAxis("Horizontal")) + transform.forward * (Input.GetAxis("Vertical"));
         controller.Move(move * (Time.deltaTime * playerSpeed));
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
+        if (/*Input.GetButtonDown("Dash")*/ playerInput.actions["Dash"].triggered) {
+            //TODO
             if (dashCount > 0 && dashCooldown <= currentDashCooldown) {
                 //dash(move);
                 StartCoroutine(DashCoroutine(move));
             }
         }
-        if (Input.GetButtonDown("Jump") && jumpedTwo == false) {
+        if (/*Input.GetButtonDown("Jump")*/ playerInput.actions["Jump"].triggered && jumpedTwo == false) {
             if (jumped) {
                 jumpedTwo = true;
             }
@@ -78,7 +87,6 @@ public class PlayerController : MonoBehaviour {
         }
         playerVelocity.y -= gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
-        //controller.Move(new Vector3(move.x * (Time.deltaTime * playerSpeed),playerVelocity.y * Time.deltaTime, move.z * (Time.deltaTime * playerSpeed)));
      }
 
     public void GetHit(int damage) {
@@ -103,7 +111,6 @@ public class PlayerController : MonoBehaviour {
 
     void GameOver() {
         GameManager.manager.Die(score);
-        //TODO
     }
     IEnumerator DashCoroutine(Vector3 move) {
         currentDashCooldown = 0;

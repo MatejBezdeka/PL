@@ -93,7 +93,6 @@ public class OptionsSelecter : OptionsObject {
                 PlayerPrefs.SetInt(typeOfOption.ToString(), currentIndex);
                 break;
         }
-        Apply();
     }
 
     protected override void Apply() {
@@ -128,12 +127,7 @@ public class OptionsSelecter : OptionsObject {
                 //canvas.targetDisplay = currentIndex;
                 break;
         }
-
         UpdateUI();
-    }
-
-    protected override void ApplyAtStart() {
-        //filters
     }
 
     protected override void Load() {
@@ -160,6 +154,6 @@ public class OptionsSelecter : OptionsObject {
         catch (Exception e) {
             currentIndex = 0;
         }
-        UpdateUI();
+        Apply();
     }
 }
