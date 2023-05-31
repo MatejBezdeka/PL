@@ -49,4 +49,8 @@ public class CameraController : MonoBehaviour {
         player.transform.rotation = Quaternion.Euler(0, vector.x, 0);
         leftArm.rotation = Quaternion.Euler(-vector.y-60,vector.x - 195,0);
     }
+
+    void OnDestroy() {
+        Settings.applySettings -= ChangeSettings;
+    }
 }
