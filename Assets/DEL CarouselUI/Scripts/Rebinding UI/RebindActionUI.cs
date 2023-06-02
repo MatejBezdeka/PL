@@ -366,7 +366,6 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 if (binding.action == newBinding.action) {
                     continue;
                 }
-
                 if (binding.effectivePath == newBinding.effectivePath) {
                     //did find duplicate
                     Debug.Log("found dup");
@@ -495,6 +494,10 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         }
 
         #endif
+        private void Start() {
+            UpdateActionLabel();
+            UpdateBindingDisplay();
+        }
 
         private void UpdateActionLabel()
         {
