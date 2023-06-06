@@ -2,20 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
-using Quaternion = System.Numerics.Quaternion;
 using Random = System.Random;
 
 public class GameManager : MonoBehaviour {
     public static GameManager manager = new GameManager();
-    int dif;
-    int f = 5; // Difficulty parameter // smaller = worse at least 5 and max 1
-    int d = 1;       // Wave parameter // 1 or -0.5 is ok max 3.5 min -3
+    float difficultyComponent = 4.5f; // Difficulty parameter // smaller = worse at least 5 and max 1
+    float waveAmplifier = 0.5f;       // Wave parameter of difficulty
     Random rn = new Random();
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] List<GameObject> typesOfEnemies = new List<GameObject>();
@@ -23,26 +19,38 @@ public class GameManager : MonoBehaviour {
     [SerializeField] Canvas pauseCanvas;
     [SerializeField] Canvas upgradeCanvas;
     [SerializeField] PlayerInput playerInput;
-    // [SerializeField] Slider volume;
     AudioSource audioSource;
     UpgradeManager upgradeManager;
-    public int difficulty { get; private set; }
+    
+    List<GameObject> listOfSpawns;
+
+    int difficulty;
+    
     int minutes = 0;
     int seconds = 0;
     float milliseconds = 0;
     string minutesText = "00";
     string secondsText = "00";
-    int enemiesWorthInArena = 0;
+    
+    int enemiesCostInArena = 0;
+    int enemiesCostLeft = 250;
+    int baseDifficultyCost;
+    public double enemyStrengthMultiplayer;
+    double enemyCountMultiplyer;
     public gameState currentGameState { get; private set; } = gameState.go;
-    int CalculateDifficulty(int time)
-    {
 
-        if (time < 25)
-            return (int)((time / f) + (d / 10.0) * ((Math.Sin(time) * 10) / 2) + 1);
-        else
-            return (int)(Math.Pow(time - 25, 1.1) + (time / f) + (d / 10.0) * ((Math.Sin(time) * 10) / 2) + 1);
+    double CalculateEnemyCountMultiplayer(int time) {
+        if (time >= 25) {
+            return (time / (difficultyComponent / 2)) + waveAmplifier * time - difficultyComponent * 3;
+        }
+        return (time / difficultyComponent) - waveAmplifier * Math.Cos(time) + 1;
     }
-
+    double CalculateEnemyStrengthMultiplayer(int time) {
+        if (time >= 25) {
+            return (time / (difficultyComponent / 2)) + waveAmplifier * time - difficultyComponent * 4;
+        }
+        return (time / difficultyComponent) + waveAmplifier * Math.Cos(time) + 1;
+    }
     public enum gameState {
         go,
         stop,
@@ -51,25 +59,25 @@ public class GameManager : MonoBehaviour {
         boss
     }
 
-    List<Enemy> listOfEnemiesInArena;
-    List<GameObject> listOfSpawns;
-    int gameProgress = 200;
-    int rampUpMultiplayer = 1;
+    //List<Enemy> listOfEnemiesInArena;
+    
     
     void Start() {
         currentGameState = gameState.go;
         Cursor.lockState = CursorLockMode.Locked;
-        Time.timeScale = 1;
-        f = 5 - dif;
+        difficultyComponent -= difficulty;
         //find all spawnpoints    
         listOfSpawns = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
-        enemiesWorthInArena = 0;
+        
         upgradeManager = upgradeCanvas.GetComponent<UpgradeManager>();
         manager = GetComponent<GameManager>();
-        manager.SetDifficulty(difficulty);
+        
         audioSource = gameObject.GetComponent<AudioSource>();
-        //Load settings = volume, Fov, fps, filters
         audioSource.volume = 0.5f;
+
+        enemyStrengthMultiplayer = CalculateEnemyStrengthMultiplayer(1);
+        enemyCountMultiplyer = CalculateEnemyCountMultiplayer(1);
+        baseDifficultyCost = enemiesCostLeft;
     }
 
     /*void FixedUpdate() {
@@ -101,7 +109,6 @@ public class GameManager : MonoBehaviour {
 
     //Invoke(nameof(shootBullet), 0.1f * i);
     void UpdateTime() {
-        
         milliseconds += Time.deltaTime;
         if (milliseconds >= 1) {
             milliseconds = 0;
@@ -136,34 +143,40 @@ public class GameManager : MonoBehaviour {
     }
 
     void MinuteChange() {
+        UpDifficulty();
         switch (minutes) {
-            case 2:
-                UpDifficulty();
+            case 4:
+                //smg 
                 break;
-            case 60:
-
+            case 8:
+                //melee
                 break;
-            //atd
+            case 10:
+                //AR
+                break;
+            case 12:
+                //shotgun
+                break;
         }
         //up difficulty - 30 min mark death -> ramp up difficulty to make player's death imminent
         //at points add new enemies
         //make weapons available at some point in upgrade
-        //čas 15min boss I 30min boss II -> infinite
+        
     }
 
     void spawnEnemies() {
-        while (gameProgress - enemiesWorthInArena > 0) {
+        while (enemiesCostLeft * enemyCountMultiplyer > enemiesCostInArena) {
             GameObject enemy = typesOfEnemies[rn.Next(0, typesOfEnemies.Count)];
             enemy = Instantiate(enemy, listOfSpawns[rn.Next(0, listOfSpawns.Count)].transform.position,
                 UnityEngine.Quaternion.identity);
             Enemy comp = enemy.GetComponentInChildren<Enemy>();
-            enemiesWorthInArena += comp.value;
-            //listOfEnemiesInArena.Add(comp);
+            enemiesCostInArena += comp.value;
         }
     }
 
     void UpDifficulty() {
-        gameProgress += 100 * rampUpMultiplayer;
+        enemyStrengthMultiplayer = CalculateEnemyStrengthMultiplayer(1);
+        enemyCountMultiplyer = CalculateEnemyCountMultiplayer(1);
     }
 
     public void Upgrade() {
@@ -182,12 +195,11 @@ public class GameManager : MonoBehaviour {
         PauseStart(gameState.stop);
     }
 
-    public void SetDifficulty(int settingDifficulty) {
-        dif = settingDifficulty;
+    public void SetDifficulty(int settingsDifficulty) {
+        difficulty = settingsDifficulty;
     }
     public void EnemyDied(Enemy enemy) {
-        enemiesWorthInArena -= enemy.value;
-        //listOfEnemiesInArena.Remove(enemy);
+        enemiesCostInArena -= enemy.value;
     }
 
     void PauseStart(gameState state) {

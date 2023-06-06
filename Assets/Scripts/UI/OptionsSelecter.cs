@@ -10,21 +10,17 @@ public class OptionsSelecter : OptionsObject {
     // resoluce se hádá s displaymodem
     // windowed zmizí rámeček
     static bool mod;
-    
-
-    [SerializeField] private List<string> choices;
-    private int currentIndex = 0;
-    private TextMeshProUGUI text;
-    [SerializeField] private Button buttonRight;
-    [SerializeField] private Button buttonLeft;
-    [SerializeField] private bool cycleable;
+    [SerializeField] List<string> choices;
+    int currentIndex = 0;
+    TextMeshProUGUI text;
+    [SerializeField] Button buttonRight;
+    [SerializeField] Button buttonLeft;
+    [SerializeField] bool cycleable;
 
     [SerializeField] TextMeshProUGUI down;
 
     protected override void Awake() {
         text = GetComponentInChildren<TextMeshProUGUI>();
-        buttonRight.onClick.AddListener(ClickNext);
-        buttonLeft.onClick.AddListener(ClickPrev);
         if (choices.Count == 0)
             switch (typeOfOption) {
                 case type.resolution:
@@ -37,7 +33,10 @@ public class OptionsSelecter : OptionsObject {
         base.Awake();
     }
 
-    
+    private void Start() {
+        buttonRight.onClick.AddListener(ClickNext);
+        buttonLeft.onClick.AddListener(ClickPrev);
+    }
 
     void ClickPrev() {
         currentIndex--;

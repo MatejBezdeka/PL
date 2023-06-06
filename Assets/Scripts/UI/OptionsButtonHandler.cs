@@ -7,7 +7,7 @@ namespace Scripts.UI {
         public static OptionsButtonHandler groupButtonObserver = new OptionsButtonHandler();
         public event Action GroupButtonClicked;
         
-        public void ClikedGroupButton() {
+        public void ClickedGroupButton() {
             GroupButtonClicked?.Invoke();
         }
     }

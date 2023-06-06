@@ -314,13 +314,11 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                         m_RebindStopEvent?.Invoke(this, operation);
 
                         if (CheckDuplicateBinding(action, bindingIndex)) {
-                            Debug.Log("yay");
                             action.RemoveBindingOverride(bindingIndex);
                             CleanUp();
                             PerformInteractiveRebind(action,bindingIndex, allCompositeParts);
                             return;
                         }
-                        Debug.Log("nay");
                         UpdateBindingDisplay();
                         CleanUp();
 
@@ -361,14 +359,16 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         }
 
         bool CheckDuplicateBinding(InputAction action, int bindingIndex) {
+            
+            // doesn't work right with composites that are are not in one place
+            
             InputBinding newBinding = action.bindings[bindingIndex];
             foreach (InputBinding binding in action.actionMap.bindings) {
                 if (binding.action == newBinding.action) {
                     continue;
                 }
                 if (binding.effectivePath == newBinding.effectivePath) {
-                    //did find duplicate
-                    Debug.Log("found dup");
+                    //found duplicate
                     return true;
                 }
                 
@@ -379,13 +379,12 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                         continue;
                     }
                     if (action.bindings[i].effectivePath == newBinding.effectivePath) {
-                        Debug.Log("found dup");
+                        //found duplicate
                         return true;
                     }
                 }
             }
-            //didnt find duplicate
-            
+            //didn't find duplicate
             return false;
         }
         

@@ -10,14 +10,14 @@ public class OptionsButtonGroup : MonoBehaviour {
     [SerializeField] GameObject body;
     
 
-    void OnEnable() {
+    void Start() {
         button = GetComponent<Button>();
         button.onClick.AddListener(Click);
         OptionsButtonHandler.groupButtonObserver.GroupButtonClicked += EnableButton;
     }
 
     void Click() {
-        OptionsButtonHandler.groupButtonObserver.ClikedGroupButton();
+        OptionsButtonHandler.groupButtonObserver.ClickedGroupButton();
         button.interactable = false;
         body.SetActive(true);
     }
@@ -25,6 +25,5 @@ public class OptionsButtonGroup : MonoBehaviour {
     void EnableButton() {
         button.interactable = true;
         body.SetActive(false);
-        
     }
 }

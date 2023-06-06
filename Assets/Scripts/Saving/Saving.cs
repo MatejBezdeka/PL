@@ -44,6 +44,9 @@ public class Saving : MonoBehaviour {
     public string scoreBoardText() {
         string text = "";
         for (int i = 0; i < n; i++) {
+            if (names[i] == "") {
+                continue;
+            }
             text += names[i] + ": " + scores[i] + "\n";
         }
         return text;
