@@ -15,7 +15,6 @@ public class OptionsButtonGroup : MonoBehaviour {
         button.onClick.AddListener(Click);
         OptionsButtonHandler.groupButtonObserver.GroupButtonClicked += EnableButton;
     }
-
     void Click() {
         OptionsButtonHandler.groupButtonObserver.ClickedGroupButton();
         button.interactable = false;
@@ -25,5 +24,9 @@ public class OptionsButtonGroup : MonoBehaviour {
     void EnableButton() {
         button.interactable = true;
         body.SetActive(false);
+    }
+
+    private void OnDestroy() {
+        OptionsButtonHandler.groupButtonObserver.GroupButtonClicked -= EnableButton;
     }
 }

@@ -10,7 +10,7 @@ namespace Scripts.UI {
         private int value;
         [SerializeField] Slider slider;
         [SerializeField] TMP_InputField inputField;
-        
+
         protected override void Load() {
 
             PlayerPrefs.GetInt(typeOfOption.ToString(), value);
@@ -81,7 +81,7 @@ namespace Scripts.UI {
                         value = (int) slider.maxValue * 10;
                     }
                     slider.value = value / 10;
-                    inputField.text = value.ToString(); 
+                    inputField.text = value + "%"; 
                     break;
                 default:
                     value =  int.Parse(inputField.text);

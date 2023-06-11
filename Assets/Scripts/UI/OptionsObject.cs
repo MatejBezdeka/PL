@@ -7,10 +7,10 @@ namespace Scripts.UI {
         
         public enum type {
             resolution,
-            quality,
+            quality, 
             vsync,
             displayMode,
-            display,
+            display, 
             filters,
             maxFPS,
             fov,
@@ -19,14 +19,7 @@ namespace Scripts.UI {
             effectsVolume,
             sensitivity
         }
-/*
- * UP,DOWN,LEFT,RIGHT ?
- * JUMP, DASH +
- * FIRE +
- * WEAPON 1,2,3,4 +
- * RELOAD +
- */
-        
+
         protected virtual void Awake() {
             switch (typeOfOption) {
                 case type.filters:
@@ -41,5 +34,11 @@ namespace Scripts.UI {
         protected abstract void Load();
         protected abstract void Save();
         protected abstract void Apply();
+
+        protected virtual void OnDestroy() {
+            Settings.applySettings -= Save;
+            Settings.applySettings -= Apply;
+            Settings.loadSettings -= Load;
+        }
     }
 }

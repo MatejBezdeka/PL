@@ -36,6 +36,7 @@ public class OptionsSelecter : OptionsObject {
     private void Start() {
         buttonRight.onClick.AddListener(ClickNext);
         buttonLeft.onClick.AddListener(ClickPrev);
+        //Debug.Log(typeOfOption + "start");
     }
 
     void ClickPrev() {
@@ -49,16 +50,26 @@ public class OptionsSelecter : OptionsObject {
     }
 
     void UpdateUI() {
-        if (currentIndex < 0) currentIndex = choices.Count-1;
-        if (currentIndex > choices.Count - 1) currentIndex = 0;
-        buttonLeft.interactable = true;
-        buttonRight.interactable = true;
+        try {
+            if (currentIndex < 0) currentIndex = choices.Count - 1;
+            if (currentIndex > choices.Count - 1) currentIndex = 0;
+            //Debug.Log(typeOfOption + "UpdateUI");
+            buttonLeft.interactable = true;
+            buttonRight.interactable = true;
 
-        if (!cycleable && currentIndex == choices.Count - 1 || choices.Count <= 1)
-            buttonRight.interactable = false;
-        if (!cycleable && currentIndex == 0 || choices.Count <= 1)
-            buttonLeft.interactable = false;
-        text.text = choices[currentIndex];
+            if (!cycleable && currentIndex == choices.Count - 1 || choices.Count <= 1)
+                buttonRight.interactable = false;
+            if (!cycleable && currentIndex == 0 || choices.Count <= 1)
+                buttonLeft.interactable = false;
+            text.text = choices[currentIndex];
+
+        }
+        catch (Exception e) {
+            Settings.applySettings -= Save;
+            Settings.applySettings -= Apply;
+            Settings.loadSettings -= Load;
+
+        }
     }
 
     #region Getters
@@ -154,5 +165,10 @@ public class OptionsSelecter : OptionsObject {
             currentIndex = 0;
         }
         Apply();
+    }
+
+    private void OnDestroy() {
+        buttonRight.onClick.RemoveAllListeners();
+        buttonLeft.onClick.RemoveAllListeners();
     }
 }
