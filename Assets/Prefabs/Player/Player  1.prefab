@@ -104,7 +104,14 @@ MonoBehaviour:
     type: 3}
   gunBarrel: {fileID: 2101402566629506105}
   playerController: {fileID: 2514918221883388098}
-  muzzleFlash: {fileID: 2882455030342916497}
+  muzzleFlash: {fileID: 0}
+  shootSound: {fileID: 0}
+  playerInput: {fileID: 0}
+  reloadSoundStart: {fileID: 0}
+  reloadSoundEnd: {fileID: 0}
+  switchSoundStart: {fileID: 0}
+  switchSoundEnd: {fileID: 0}
+  iconOfTheWeapon: {fileID: 0}
 --- !u!1 &2514918220931138667
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +164,13 @@ MonoBehaviour:
   gunBarrel: {fileID: 0}
   playerController: {fileID: 0}
   muzzleFlash: {fileID: 0}
+  shootSound: {fileID: 0}
+  playerInput: {fileID: 0}
+  reloadSoundStart: {fileID: 0}
+  reloadSoundEnd: {fileID: 0}
+  switchSoundStart: {fileID: 0}
+  switchSoundEnd: {fileID: 0}
+  iconOfTheWeapon: {fileID: 0}
 --- !u!1 &2514918221178985576
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,11 +181,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2514918221178985577}
   - component: {fileID: 2514918221178985582}
-  - component: {fileID: 2514918221178985580}
   - component: {fileID: 2514918221883388098}
   - component: {fileID: 2514918221883388109}
   - component: {fileID: 2514918221178985583}
   - component: {fileID: 2514918221823821718}
+  - component: {fileID: 1913549498756368152}
   m_Layer: 0
   m_Name: Player  1
   m_TagString: Player
@@ -213,21 +227,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.55
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.7, z: 0}
---- !u!136 &2514918221178985580
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2514918221178985576}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.92
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.02, z: 0}
 --- !u!114 &2514918221883388098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,8 +240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871dee3574c68b54cba19b3f3c3b66f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUpgrader: {fileID: 0}
-  move: {x: 0, y: 0, z: 0}
+  statsHandler: {fileID: 0}
+  playerInput: {fileID: 0}
 --- !u!114 &2514918221883388109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +271,8 @@ MonoBehaviour:
   scoreText: {fileID: 0}
   hpText: {fileID: 0}
   xpSlider: {fileID: 0}
+  gunIcon: {fileID: 0}
+  bloodOnScreen: {fileID: 0}
 --- !u!33 &2514918221823821718
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -279,6 +281,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2514918221178985576}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1913549498756368152
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2514918221178985576}
+  m_Material: {fileID: 13400000, guid: 2d93e7635fab3cd4384750495629dc07, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.64294857, y: 2.798439, z: 1}
+  m_Center: {x: 0.004827838, y: 0.08606904, z: 0}
 --- !u!1 &2514918221882633604
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +698,14 @@ MonoBehaviour:
     type: 3}
   gunBarrel: {fileID: 5071140282321551223}
   playerController: {fileID: 2514918221883388098}
-  muzzleFlash: {fileID: 2882455030342916497}
+  muzzleFlash: {fileID: 0}
+  shootSound: {fileID: 0}
+  playerInput: {fileID: 0}
+  reloadSoundStart: {fileID: 0}
+  reloadSoundEnd: {fileID: 0}
+  switchSoundStart: {fileID: 0}
+  switchSoundEnd: {fileID: 0}
+  iconOfTheWeapon: {fileID: 0}
 --- !u!1 &7634517875411448330
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +873,14 @@ MonoBehaviour:
     type: 3}
   gunBarrel: {fileID: 3363434661349152974}
   playerController: {fileID: 2514918221883388098}
-  muzzleFlash: {fileID: 2882455030342916497}
+  muzzleFlash: {fileID: 0}
+  shootSound: {fileID: 0}
+  playerInput: {fileID: 0}
+  reloadSoundStart: {fileID: 0}
+  reloadSoundEnd: {fileID: 0}
+  switchSoundStart: {fileID: 0}
+  switchSoundEnd: {fileID: 0}
+  iconOfTheWeapon: {fileID: 0}
 --- !u!1 &8959199212513686463
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +985,14 @@ MonoBehaviour:
     type: 3}
   gunBarrel: {fileID: 6930882225284845641}
   playerController: {fileID: 2514918221883388098}
-  muzzleFlash: {fileID: 2882455030342916497}
+  muzzleFlash: {fileID: 0}
+  shootSound: {fileID: 0}
+  playerInput: {fileID: 0}
+  reloadSoundStart: {fileID: 0}
+  reloadSoundEnd: {fileID: 0}
+  switchSoundStart: {fileID: 0}
+  switchSoundEnd: {fileID: 0}
+  iconOfTheWeapon: {fileID: 0}
 --- !u!1001 &8936796157984689254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1340,12 +1376,6 @@ Transform:
 --- !u!1 &6749862336659720389 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2425668652945949859, guid: 72e9a5685182aae41a2b90fe90eeb0f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 8936796157984689254}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &2882455030342916497 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6054361090788185591, guid: 72e9a5685182aae41a2b90fe90eeb0f5,
     type: 3}
   m_PrefabInstance: {fileID: 8936796157984689254}
   m_PrefabAsset: {fileID: 0}
