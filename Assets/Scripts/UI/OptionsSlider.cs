@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Scripts.Enviroment;
 using TMPro;
 using UnityEngine;
@@ -12,11 +13,9 @@ namespace Scripts.UI {
         [SerializeField] TMP_InputField inputField;
 
         protected override void Load() {
-
-            PlayerPrefs.GetInt(typeOfOption.ToString(), value);
+            value = PlayerPrefs.GetInt(typeOfOption.ToString());
+            slider.value = value;
             SliderChanged();
-            TextChanged();
-            
         }
 
         protected override void Save() {
@@ -57,23 +56,25 @@ namespace Scripts.UI {
                         inputField.text = value.ToString();
                     }
                     break;
-                case type.masterVolume:
-                case type.musicVolume:
-                case type.effectsVolume:
-                case type.sensitivity:
+                
                 case type.fov:
                     value = (int) slider.value;
                     inputField.text = value.ToString();
                     break;
+                case type.masterVolume:
+                case type.musicVolume:
+                case type.effectsVolume:
+                case type.sensitivity:
+                    value = (int) slider.value;
+                    inputField.text = value + "%";
+                break;
             }
         }
 
         public void TextChanged() {
             switch (typeOfOption) {
                 case type.maxFPS:
-                    if (inputField.text == "unlimited") {
-                        return;
-                    }
+                    
                     value = (int.Parse(inputField.text) / 10) * 10;
                     if (value/10 < slider.minValue) {
                         value = (int) slider.minValue * 10;
@@ -81,16 +82,18 @@ namespace Scripts.UI {
                         value = (int) slider.maxValue * 10;
                     }
                     slider.value = value / 10;
-                    inputField.text = value + "%"; 
+                    inputField.text = value.ToString(); 
                     break;
+                
                 default:
-                    value =  int.Parse(inputField.text);
+                    value = Int32.Parse(inputField.text);
                     if (value < slider.minValue) {
                         value = (int) slider.minValue;
                     }else if (value > slider.maxValue) {
                         value = (int) slider.maxValue;
-                    } 
+                    }
                     break;
+                
             }
         }
     }

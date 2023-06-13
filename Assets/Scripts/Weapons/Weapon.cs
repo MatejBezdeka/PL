@@ -24,6 +24,8 @@ public class Weapon : MonoBehaviour {
     /*protected enum mode {
         single, burst, auto, shotgun
     }*/
+    public PlayerInput playerInput;
+    MeshRenderer meshRenderer;
     public bool reloading { get; private set; }
     [SerializeField] protected Transform laserPos2;
     [SerializeField] protected GameObject bulletPrefab;
@@ -31,13 +33,11 @@ public class Weapon : MonoBehaviour {
     [SerializeField] protected PlayerController playerController;
     [SerializeField] protected ParticleSystem muzzleFlash;
     [SerializeField] protected AudioClip shootSound;
-    public PlayerInput playerInput;
     [SerializeField] public AudioClip reloadSoundStart;
     [SerializeField] public AudioClip reloadSoundEnd;
     [SerializeField] public AudioClip switchSoundStart;
     [SerializeField] public AudioClip switchSoundEnd;
     [SerializeField] public Sprite iconOfTheWeapon;
-    MeshRenderer meshRenderer;
     protected virtual void Awake() {
         meshRenderer = GetComponent<MeshRenderer>();
         bulletsInMag = magSize;
@@ -48,7 +48,6 @@ public class Weapon : MonoBehaviour {
     protected void Start() {
         weaponUpgrader = gameObject.AddComponent<WeaponUpgrader>();
         playerInput = playerController.playerInput;
-
     }
 
     public virtual void Attack() {

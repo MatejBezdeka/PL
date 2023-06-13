@@ -7,8 +7,7 @@ namespace Scripts.UI {
         public static Action loadSettings;
 
         void OnEnable() {
-            loadSettings?.Invoke();
-            Debug.Log("invoke");
+            loadSettings.Invoke();
         }
         public void ApplyChanges() {
             applySettings.Invoke();

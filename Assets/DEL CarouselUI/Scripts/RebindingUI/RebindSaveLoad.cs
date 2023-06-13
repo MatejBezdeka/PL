@@ -7,13 +7,12 @@ public class RebindSaveLoad : MonoBehaviour
 {
     public InputActionAsset actions;
 
-    private void Awake() {
+    void Awake() {
         Settings.loadSettings += Load;
         Settings.applySettings += Save;
     }
 
-    void Load()
-    {
+    void Load() {
         var rebinds = PlayerPrefs.GetString("rebinds");
         if (!string.IsNullOrEmpty(rebinds))
             actions.LoadBindingOverridesFromJson(rebinds);
@@ -21,6 +20,7 @@ public class RebindSaveLoad : MonoBehaviour
 
     void Save()
     {
+        Debug.Log("save rebinds");
         var rebinds = actions.SaveBindingOverridesAsJson();
         PlayerPrefs.SetString("rebinds", rebinds);
     }
