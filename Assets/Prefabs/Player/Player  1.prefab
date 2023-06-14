@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponUpgrader: {fileID: 0}
   available: 1
+  playerInput: {fileID: 0}
   laserPos2: {fileID: 5123634454901391129}
   bulletPrefab: {fileID: 4306742943587162167, guid: d610b2b6110b989429c5a25a245a8840,
     type: 3}
@@ -106,7 +107,6 @@ MonoBehaviour:
   playerController: {fileID: 2514918221883388098}
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 0}
-  playerInput: {fileID: 0}
   reloadSoundStart: {fileID: 0}
   reloadSoundEnd: {fileID: 0}
   switchSoundStart: {fileID: 0}
@@ -159,13 +159,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponUpgrader: {fileID: 0}
   available: 0
+  playerInput: {fileID: 0}
   laserPos2: {fileID: 0}
   bulletPrefab: {fileID: 0}
   gunBarrel: {fileID: 0}
   playerController: {fileID: 0}
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 0}
-  playerInput: {fileID: 0}
   reloadSoundStart: {fileID: 0}
   reloadSoundEnd: {fileID: 0}
   switchSoundStart: {fileID: 0}
@@ -221,13 +221,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2.92
+  m_Height: 2.37
   m_Radius: 0.5
   m_SlopeLimit: 30
   m_StepOffset: 0.3
   m_SkinWidth: 0.55
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.02, z: 0}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!114 &2514918221883388098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,6 +693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponUpgrader: {fileID: 0}
   available: 1
+  playerInput: {fileID: 0}
   laserPos2: {fileID: 5123634454901391129}
   bulletPrefab: {fileID: 4306742943587162167, guid: d610b2b6110b989429c5a25a245a8840,
     type: 3}
@@ -700,7 +701,6 @@ MonoBehaviour:
   playerController: {fileID: 2514918221883388098}
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 0}
-  playerInput: {fileID: 0}
   reloadSoundStart: {fileID: 0}
   reloadSoundEnd: {fileID: 0}
   switchSoundStart: {fileID: 0}
@@ -868,6 +868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponUpgrader: {fileID: 0}
   available: 1
+  playerInput: {fileID: 0}
   laserPos2: {fileID: 5123634454901391129}
   bulletPrefab: {fileID: 4306742943587162167, guid: d610b2b6110b989429c5a25a245a8840,
     type: 3}
@@ -875,7 +876,6 @@ MonoBehaviour:
   playerController: {fileID: 2514918221883388098}
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 0}
-  playerInput: {fileID: 0}
   reloadSoundStart: {fileID: 0}
   reloadSoundEnd: {fileID: 0}
   switchSoundStart: {fileID: 0}
@@ -980,6 +980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponUpgrader: {fileID: 0}
   available: 1
+  playerInput: {fileID: 0}
   laserPos2: {fileID: 5123634454901391129}
   bulletPrefab: {fileID: 4306742943587162167, guid: d610b2b6110b989429c5a25a245a8840,
     type: 3}
@@ -987,7 +988,6 @@ MonoBehaviour:
   playerController: {fileID: 2514918221883388098}
   muzzleFlash: {fileID: 0}
   shootSound: {fileID: 0}
-  playerInput: {fileID: 0}
   reloadSoundStart: {fileID: 0}
   reloadSoundEnd: {fileID: 0}
   switchSoundStart: {fileID: 0}

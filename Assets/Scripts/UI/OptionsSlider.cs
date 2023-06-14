@@ -2,6 +2,7 @@
 using System.Globalization;
 using Scripts.Enviroment;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -14,7 +15,14 @@ namespace Scripts.UI {
 
         protected override void Load() {
             value = PlayerPrefs.GetInt(typeOfOption.ToString());
-            slider.value = value;
+            switch (typeOfOption) {
+                case type.maxFPS:
+                    slider.value = value/10;
+                    break;
+                default:
+                    slider.value = value;
+                    break;
+            }
             SliderChanged();
         }
 
@@ -25,7 +33,6 @@ namespace Scripts.UI {
         protected override void Apply() {
             switch (typeOfOption) {
                 case type.maxFPS:
-                    //??? funguje ???//
                     if (slider.value == slider.maxValue) {
                         Application.targetFrameRate = -1;
                     }
