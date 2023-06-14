@@ -4,14 +4,14 @@ public class MeleeEnemy : Enemy {
         Instantiate(prefab, spawnPoint, Quaternion.identity);
     }
     void Awake() {
-        value = 105;
-        speed = 8.5f;
+        value = 310;
+        speed = 8.3f;
         attackSpeed = 3.8f;
-        hp = 600;
-        damage = 100;
-        armor = 200;
+        hp = (int)(195 * GameManager.manager.enemyStrengthMultiplayer);;
+        damage = (int)(66 * GameManager.manager.enemyStrengthMultiplayer);;
+        armor = 70;
         courage = 100;
-        attackRange = 2.2f;
+        attackRange = 2.3f;
         base.Start();
     }
     public override void Attack() {

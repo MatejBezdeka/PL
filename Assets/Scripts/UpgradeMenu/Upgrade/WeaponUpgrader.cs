@@ -7,6 +7,7 @@ public class WeaponUpgrader : MonoBehaviour {
 
     public void AddMaxBullets(int amount, Weapon weapon) {
         weapon.magSize += amount;
+        
     }
 
     public void ReloadFaster(float amount, Weapon weapon) {

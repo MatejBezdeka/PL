@@ -3,11 +3,11 @@ public class SubMachinegun : Weapon
     private int burstCount = 3;
     void Awake() {
         name = "SMG";
-        damage = 200;
-        magSize = 25;
+        damage = 80;
+        magSize = 20;
         cooldown = 1.6f;
-        reloadCooldown = 1.2f;
-        weaponSpread = 0.08f;
+        reloadCooldown = 3.5f;
+        weaponSpread = 0.03f;
         base.Awake();
     }
 

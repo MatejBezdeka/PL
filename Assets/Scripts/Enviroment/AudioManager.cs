@@ -7,7 +7,7 @@ namespace Scripts.Enviroment {
         public static AudioManager audManager;
         public AudioMixer mixer;
 
-        void Start() {
+        void Awake() {
             audManager = this;
         }
 

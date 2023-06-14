@@ -12,7 +12,6 @@ public class WeaponUpgrade : StatsUpgrade {
     }
 
     void Start() {
-        
         switch (upgrade) {
             case weaponUpgrade.bulletSpeed:
             case weaponUpgrade.reloadSpeed: 
@@ -36,7 +35,7 @@ public class WeaponUpgrade : StatsUpgrade {
     
     public override void Use(PlayerController playerController, WeaponController weaponController) {
         if (percents) {
-            value /= 100;
+            value /= 100f;
         }
         switch (upgrade) {
             case weaponUpgrade.bulletSpeed:

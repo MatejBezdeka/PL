@@ -4,17 +4,17 @@ public class Pistol : Weapon {
     void Awake() {
         name = "Pistol";
         available = true;
-        damage = 120;
-        magSize = 12;
-        cooldown = 0.3f;
-        reloadCooldown = 3.2f;
-        weaponSpread = 0.05f;
+        damage = 65;
+        magSize = 9;
+        cooldown = 0.85f;
+        reloadCooldown = 2.2f;
+        weaponSpread = 0.03f;
         muzzleFlash.transform.position = gunBarrel.position;
         base.Awake();
     }
 
     void Start() {
-        playerInput = playerController.playerInput;
+        base.Start();
     }
     protected void Update() {
         base.update();

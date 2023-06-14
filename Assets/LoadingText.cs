@@ -32,6 +32,6 @@ public class LoadingText : MonoBehaviour
             }
             currentCooldown = 0;
         }
-        Debug.Log(length);
+        //Debug.Log(length);
     }
 }

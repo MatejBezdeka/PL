@@ -1,10 +1,10 @@
 public class Shotgun : Weapon {
     void Awake() {
         name = "Shotgun";
-        damage = 80;
-        magSize = 10;
-        cooldown = 0.7f;
-        reloadCooldown = 2.2f;
+        damage = 120;
+        magSize = 5;
+        cooldown = 1.25f;
+        reloadCooldown = 4.2f;
         weaponSpread = 0.15f;
         base.Awake();
     }

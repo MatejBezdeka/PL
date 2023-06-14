@@ -46,6 +46,7 @@ public class Weapon : MonoBehaviour {
     }
 
     protected void Start() {
+        Debug.Log(gameObject.name);
         weaponUpgrader = gameObject.AddComponent<WeaponUpgrader>();
         playerInput = playerController.playerInput;
     }

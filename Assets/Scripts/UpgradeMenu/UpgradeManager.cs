@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -18,6 +19,8 @@ public class UpgradeManager : MonoBehaviour {
     [SerializeField] GameObject upgrades;
     [SerializeField] AudioClip levelUpSound;
     [SerializeField] AudioClip buttonClick;
+    float delay = 1.2f;
+    float currentdelay = 0;
     List<int> upgradeActive = new List<int>();
     WeaponUpgrade wea;
     void Start() {
@@ -28,11 +31,25 @@ public class UpgradeManager : MonoBehaviour {
             listOfButtons[i].onClick.AddListener(delegate { Click(idOfButton); });
         }
     }
+
+    void Update() {
+        if (currentdelay > 0) {
+            currentdelay -= Time.fixedTime;
+        }
+        else {
+            foreach (var button in listOfButtons) {
+                button.interactable = true;
+            }
+        }
+    }
+
     public void LevelUp() {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         GameManager.manager.PlayAudioCLip(levelUpSound);
         for (int i = 0; i < listOfButtons.Count;) {
+            listOfButtons[i].interactable = false;
+            currentdelay = delay;
             int id = rn.Next(0, listOfUpgrades.Count);
             if (ControlDuplicityOfUpgrade(id)) {
                 //Debug.Log("ID: " + id);

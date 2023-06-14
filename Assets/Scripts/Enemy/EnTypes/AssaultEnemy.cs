@@ -4,16 +4,16 @@ public class AssaultEnemy : Enemy {
         Instantiate(prefab, spawnPoint, Quaternion.identity);
     }
     void Awake() {
-        value = 105;
-        speed = 6.5f;
+        value = 245;
+        speed = 6f;
         attackSpeed = 5.5f;
-        hp = 400;
-        damage = 200;
-        armor = 20;
+        hp = (int)(135 * GameManager.manager.enemyStrengthMultiplayer);;
+        damage = (int)(35 * GameManager.manager.enemyStrengthMultiplayer);;
+        armor = 35;
         waitBetweenShots = true;
-        burstBulletCount = 15;
+        burstBulletCount = 9;
         bulletSpread = 0.02f;
-        attackRange = Random.Range(13f, 16.8f);
+        attackRange = Random.Range(11f, 18.8f);
         courage = 0;
         base.Start();
     }

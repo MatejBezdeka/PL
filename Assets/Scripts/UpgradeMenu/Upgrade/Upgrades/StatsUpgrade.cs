@@ -20,15 +20,15 @@ namespace UpgradeMenu.Upgrade.Upgrades {
             switch (luck) {
                 case >96:
                     upgradeRarity = rarity.legendary;
-                    value *= 4;
+                    value *= 2.5f;
                     break;
                 case >90:
                     upgradeRarity = rarity.epic;
-                    value *= 3;
+                    value *= 1.75f;
                     break;
                 case >83:
                     upgradeRarity = rarity.rare;
-                    value *= 2;
+                    value *= 1.35f;
                     break;
                 default:
                     upgradeRarity = rarity.common;
@@ -46,13 +46,13 @@ namespace UpgradeMenu.Upgrade.Upgrades {
         public override void UndoRarityValues() {
             switch (upgradeRarity) {
                 case rarity.legendary:
-                    value /= 4;
+                    value /= 2.5f;
                     break;
                 case rarity.epic:
-                    value /= 3;
+                    value /= 1.75f;
                     break;
                 case rarity.rare:
-                    value /= 2;
+                    value /= 1.35f;
                     break;
                 case rarity.common:
                     break;

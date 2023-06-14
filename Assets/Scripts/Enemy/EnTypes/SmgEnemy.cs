@@ -6,16 +6,16 @@ public class SmgEnemy : Enemy
     }
 
     void Awake() {
-        value = 105;
+        value = 205;
         speed = 12.5f;
-        attackSpeed = 2.5f;
-        hp = 250;
-        damage = 150;
+        attackSpeed = 3.7f;
+        hp = (int)(145 * GameManager.manager.enemyStrengthMultiplayer);;
+        damage = (int)(75 * GameManager.manager.enemyStrengthMultiplayer);;
         armor = 20;
         waitBetweenShots = true;
         burstBulletCount = 3;
-        bulletSpread = 0.1f;
-        attackRange = Random.Range(8.5f, 12f);
+        bulletSpread = 0.07f;
+        attackRange = Random.Range(5.8f, 12.3f);
         courage = Random.Range(30, 50);
         base.Start();
     }
