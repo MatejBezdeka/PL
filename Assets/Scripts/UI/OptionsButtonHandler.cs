@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityStandardAssets.Utility;
 
 namespace Scripts.UI {
     public class OptionsButtonHandler : MonoBehaviour {
