@@ -3896,6 +3896,53 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!21 &150137075
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/RetroCameraEffect
+  m_Shader: {fileID: 4800000, guid: 2cfdcae76c757405786f1219a383da6e, type: 3}
+  m_ShaderKeywords: BOTTOM_STRETCH_ON CHROMATIC_ON NOISE_BOTTOM_ON NOISE_ON RADIAL_DISTORTION_ON
+    SCANLINES_ON VIGNETTE_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondaryTex:
+        m_Texture: {fileID: 2800000, guid: 0ecedd370a77a4a3dbbb9cc9e09081cd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ChromaticAberration: 4
+    - _DisplacementAmplitude: 0.00080000004
+    - _DisplacementFrequency: 60
+    - _DisplacementSpeed: 0.8
+    - _NoiseBottomHeight: 0.04
+    - _NoiseBottomIntensity: 0.47
+    - _OffsetNoiseX: 0.21612751
+    - _OffsetNoiseY: -0.13222218
+    - _StaticIntensity: 1.155
+    - _UseChromaticAberration: 1
+    - _UseDisplacement: 1
+    - _UseStaticNoise: 1
+    - _UseVignette: 0
+    - _Vignette: 0
+    m_Colors:
+    - _OffsetPos: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1001 &153501399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17084,53 +17131,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1963523613}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &314266081
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/RetroCameraEffect
-  m_Shader: {fileID: 4800000, guid: 2cfdcae76c757405786f1219a383da6e, type: 3}
-  m_ShaderKeywords: BOTTOM_STRETCH_ON CHROMATIC_ON NOISE_BOTTOM_ON NOISE_ON RADIAL_DISTORTION_ON
-    SCANLINES_ON VIGNETTE_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SecondaryTex:
-        m_Texture: {fileID: 2800000, guid: 0ecedd370a77a4a3dbbb9cc9e09081cd, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ChromaticAberration: 4
-    - _DisplacementAmplitude: 0.00080000004
-    - _DisplacementFrequency: 60
-    - _DisplacementSpeed: 0.8
-    - _NoiseBottomHeight: 0.04
-    - _NoiseBottomIntensity: 0.47
-    - _OffsetNoiseX: 0.89822435
-    - _OffsetNoiseY: 0.281855
-    - _StaticIntensity: 1.155
-    - _UseChromaticAberration: 1
-    - _UseDisplacement: 1
-    - _UseStaticNoise: 1
-    - _UseVignette: 0
-    - _Vignette: 0
-    m_Colors:
-    - _OffsetPos: {r: 0, g: 0, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!4 &319260581 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7513445391231683444, guid: c4b50f1299ffaff4baa5c5cbf91f7cf7,
@@ -87931,7 +87931,6 @@ GameObject:
   - component: {fileID: 2130253785}
   - component: {fileID: 2130253784}
   - component: {fileID: 2130253783}
-  - component: {fileID: 2130253782}
   - component: {fileID: 2130253781}
   m_Layer: 0
   m_Name: Upgrades
@@ -87969,7 +87968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   picture: {fileID: 21300000, guid: 9f755fdf7cd214f45a3d1428e96715b3, type: 3}
   text: max Health
-  description: get healthier by
+  description: Get healthier by
   value: 20
   upgrade: 0
 --- !u!114 &2130253774
@@ -87986,7 +87985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   picture: {fileID: 21300000, guid: 9f755fdf7cd214f45a3d1428e96715b3, type: 3}
   text: Heal yourself
-  description: go get healed by
+  description: Go get healed by
   value: 30
   upgrade: 8
 --- !u!114 &2130253775
@@ -88051,7 +88050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   picture: {fileID: 21300000, guid: 91b03a884765d834380febf0afb165fb, type: 3}
   text: Xp multiplayer
-  description: level up faster by
+  description: Level up faster by
   value: 5
   upgrade: 7
 --- !u!114 &2130253780
@@ -88068,7 +88067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   picture: {fileID: 21300000, guid: f4244469750ec10419068e39d99cffc2, type: 3}
   text: Score multiplayer
-  description: give your score a boost by
+  description: Give your score a boost by
   value: 5
   upgrade: 6
 --- !u!114 &2130253781
@@ -88088,23 +88087,6 @@ MonoBehaviour:
   description: ' reloading speed increses by'
   value: 7
   upgrade: 4
---- !u!114 &2130253782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130253764}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51ca67f3262dc374c897dd3b088b71d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  picture: {fileID: 21300000, guid: d2a216e0ac36adb46b151757e888969c, type: 3}
-  text: bulletSpeed
-  description: 
-  value: 4
-  upgrade: 3
 --- !u!114 &2130253783
 MonoBehaviour:
   m_ObjectHideFlags: 0

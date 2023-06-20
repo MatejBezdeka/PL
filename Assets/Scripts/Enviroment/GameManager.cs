@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
     
     int enemiesCostInArena = 0;
     int enemiesCostLeft = 250;
-    int baseDifficultyCost;
+    int baseDifficultyCost = 250;
     public double enemyStrengthMultiplayer;
     double enemyCountMultiplyer;
     public gameState currentGameState { get; private set; } = gameState.go;
@@ -75,9 +75,10 @@ public class GameManager : MonoBehaviour {
         audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.volume = 0.5f;
 
-        enemyStrengthMultiplayer = CalculateEnemyStrengthMultiplayer(1);
-        enemyCountMultiplyer = CalculateEnemyCountMultiplayer(1);
+        UpDifficulty(1);
         baseDifficultyCost = enemiesCostLeft;
+        
+        Debug.Log(enemyCountMultiplyer + " " + enemyStrengthMultiplayer);
     }
 
     /*void FixedUpdate() {
@@ -143,7 +144,9 @@ public class GameManager : MonoBehaviour {
     }
 
     void MinuteChange() {
-        UpDifficulty();
+        UpDifficulty(minutes);
+        Debug.Log(enemyCountMultiplyer + " " + enemyStrengthMultiplayer);
+        
         switch (minutes) {
             case 4:
                 //smg 
@@ -165,7 +168,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void spawnEnemies() {
-        while (enemiesCostLeft * enemyCountMultiplyer > enemiesCostInArena) {
+        while (baseDifficultyCost * enemyCountMultiplyer > enemiesCostInArena) {
             GameObject enemy = typesOfEnemies[rn.Next(0, typesOfEnemies.Count)];
             enemy = Instantiate(enemy, listOfSpawns[rn.Next(0, listOfSpawns.Count)].transform.position,
                 UnityEngine.Quaternion.identity);
@@ -174,9 +177,9 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void UpDifficulty() {
-        enemyStrengthMultiplayer = CalculateEnemyStrengthMultiplayer(1);
-        enemyCountMultiplyer = CalculateEnemyCountMultiplayer(1);
+    void UpDifficulty(int time) {
+        enemyStrengthMultiplayer = CalculateEnemyStrengthMultiplayer(time);
+        enemyCountMultiplyer = CalculateEnemyCountMultiplayer(time);
     }
 
     public void Upgrade() {
